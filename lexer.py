@@ -131,13 +131,15 @@ def main():
 
     # rules for tokens
     # identifiers
-    def t_INT_CONSTANT(t):
-        r'\-?\d+'
-        return int(t.value)
-
     def t_FLOAT_CONSTANT(t):
         r'\d*\.\d+'
-        return float(t.value)
+        t.value = float(t.value)
+        return t
+
+    def t_INT_CONSTANT(t):
+        r'\d+'
+        t.value = int(t.value)
+        return t
 
     t_STR_CONSTANT =  r'\"([^\\\n]|(\\.))*?\"'
     t_CHAR_CONSTANT = r"\'([^\\\n]|(\\.))?\'"
