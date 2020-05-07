@@ -1,0 +1,249 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    ABSTRACT
+    ASSERT
+    ASSIGN
+    BIT_AND
+    BIT_NOT
+    BIT_OR
+    BIT_XOR
+    BLOCK_CLOSER
+    BLOCK_COMMENT
+    BLOCK_OPENER
+    BREAK
+    CASE
+    CATCH
+    COLON
+    COMMA
+    CONST
+    CONTINUE
+    DECR
+    DEFAULT
+    DIV
+    DIVEQ
+    DO
+    ELSE
+    EQUALS
+    EXTENDS
+    FINALLY
+    FOR
+    GREATER
+    GREQ
+    IF
+    INCR
+    INLINE_COMMENT
+    INSTANCEOF
+    LESEQ
+    LESSER
+    LOGIC_AND
+    LOGIC_NOT
+    LOGIC_OR
+    LSHIFT
+    LSHIFTEQ
+    L_PAREN
+    MINUS
+    MINUSEQ
+    MOD
+    MODEQ
+    MULTEQ
+    NATIVE
+    NEW
+    NOTEQ
+    PLUS
+    PLUSEQ
+    QUES
+    RETURN
+    RSHIFT
+    RSHIFTEQ
+    R_PAREN
+    SUPER
+    SWITCH
+    THIS
+    THROW
+    THROWS
+    TRY
+    VOID
+    WHILE
+
+Grammar
+
+Rule 0     S' -> Goal
+Rule 1     Goal -> CompilationUnit
+Rule 2     Literal -> INT_CONSTANT
+Rule 3     Literal -> FLOAT_CONSTANT
+Rule 4     Literal -> CHAR_CONSTANT
+Rule 5     Literal -> STR_CONSTANT
+Rule 6     Literal -> NULL
+Rule 7     Type -> PrimitiveType
+Rule 8     Type -> ReferenceType
+Rule 9     PrimitiveType -> NumericType
+Rule 10    PrimitiveType -> BOOLEAN
+Rule 11    NumericType -> IntegralType
+Rule 12    NumericType -> FloatingPointType
+Rule 13    IntegralType -> BYTE
+Rule 14    IntegralType -> SHORT
+Rule 15    IntegralType -> INT
+Rule 16    IntegralType -> CHAR
+Rule 17    IntegralType -> LONG
+Rule 18    FloatingPointType -> FLOAT
+Rule 19    FloatingPointType -> DOUBLE
+Rule 20    ReferenceType -> ClassType
+Rule 21    ReferenceType -> ArrayType
+Rule 22    ClassType -> Name
+Rule 23    ArrayType -> Name L_SQBR R_SQBR
+Rule 24    ArrayType -> PrimitiveType L_SQBR R_SQBR
+Rule 25    ArrayType -> ArrayType L_SQBR R_SQBR
+Rule 26    Name -> SimpleName
+Rule 27    Name -> QualifiedName
+Rule 28    SimpleName -> IDENTIFIER
+Rule 29    QualifiedName -> Name DOT IDENTIFIER
+Rule 30    CompilationUnit -> PackageDeclaration ImportDeclarations TypeDeclarations
+Rule 31    CompilationUnit -> PackageDeclaration ImportDeclarations
+Rule 32    CompilationUnit -> PackageDeclaration TypeDeclarations
+Rule 33    CompilationUnit -> ImportDeclarations TypeDeclarations
+Rule 34    CompilationUnit -> PackageDeclaration
+Rule 35    CompilationUnit -> ImportDeclarations
+Rule 36    CompilationUnit -> TypeDeclarations
+Rule 37    PackageDeclaration -> PACKAGE Name SEMICOLON
+Rule 38    ImportDeclarations -> ImportDeclarations ImportDeclaration
+Rule 39    ImportDeclarations -> ImportDeclaration
+Rule 40    TypeDeclarations -> TypeDeclarations TypeDeclaration
+Rule 41    TypeDeclarations -> TypeDeclaration
+Rule 42    ImportDeclaration -> SingleTypeImportDeclaration
+Rule 43    ImportDeclaration -> TypeImportOnDemandDeclaration
+Rule 44    SingleTypeImportDeclaration -> IMPORT Name SEMICOLON
+Rule 45    TypeImportOnDemandDeclaration -> IMPORT Name DOT MULT SEMICOLON
+Rule 46    TypeDeclaration -> ClassDeclaration
+Rule 47    TypeDeclaration -> SEMICOLON
+Rule 48    Modifiers -> Modifiers Modifier
+Rule 49    Modifiers -> Modifier
+Rule 50    Modifier -> FINAL
+Rule 51    Modifier -> STATIC
+Rule 52    ClassDeclaration -> Modifiers CLASS IDENTIFIER Super ClassBody
+Rule 53    ClassDeclaration -> Modifiers CLASS IDENTIFIER ClassBody
+Rule 54    ClassDeclaration -> CLASS IDENTIFIER Super ClassBody
+Rule 55    ClassDeclaration -> CLASS IDENTIFIER ClassBody
+
+Terminals, with rules where they appear
+
+ABSTRACT             : 
+ASSERT               : 
+ASSIGN               : 
+BIT_AND              : 
+BIT_NOT              : 
+BIT_OR               : 
+BIT_XOR              : 
+BLOCK_CLOSER         : 
+BLOCK_COMMENT        : 
+BLOCK_OPENER         : 
+BOOLEAN              : 10
+BREAK                : 
+BYTE                 : 13
+CASE                 : 
+CATCH                : 
+CHAR                 : 16
+CHAR_CONSTANT        : 4
+CLASS                : 52 53 54 55
+COLON                : 
+COMMA                : 
+CONST                : 
+CONTINUE             : 
+DECR                 : 
+DEFAULT              : 
+DIV                  : 
+DIVEQ                : 
+DO                   : 
+DOT                  : 29 45
+DOUBLE               : 19
+ELSE                 : 
+EQUALS               : 
+EXTENDS              : 
+FINAL                : 50
+FINALLY              : 
+FLOAT                : 18
+FLOAT_CONSTANT       : 3
+FOR                  : 
+GREATER              : 
+GREQ                 : 
+IDENTIFIER           : 28 29 52 53 54 55
+IF                   : 
+IMPORT               : 44 45
+INCR                 : 
+INLINE_COMMENT       : 
+INSTANCEOF           : 
+INT                  : 15
+INT_CONSTANT         : 2
+LESEQ                : 
+LESSER               : 
+LOGIC_AND            : 
+LOGIC_NOT            : 
+LOGIC_OR             : 
+LSHIFT               : 
+LSHIFTEQ             : 
+L_PAREN              : 
+L_SQBR               : 23 24 25
+MINUS                : 
+MINUSEQ              : 
+MOD                  : 
+MODEQ                : 
+MULT                 : 45
+MULTEQ               : 
+NATIVE               : 
+NEW                  : 
+NOTEQ                : 
+NULL                 : 6
+PACKAGE              : 37
+PLUS                 : 
+PLUSEQ               : 
+QUES                 : 
+RETURN               : 
+RSHIFT               : 
+RSHIFTEQ             : 
+R_PAREN              : 
+R_SQBR               : 23 24 25
+SEMICOLON            : 37 44 45 47
+SHORT                : 14
+STATIC               : 51
+STR_CONSTANT         : 5
+SUPER                : 
+SWITCH               : 
+THIS                 : 
+THROW                : 
+THROWS               : 
+TRY                  : 
+VOID                 : 
+WHILE                : 
+error                : 
+
+Nonterminals, with rules where they appear
+
+ArrayType            : 21 25
+ClassBody            : 52 53 54 55
+ClassDeclaration     : 46
+ClassType            : 20
+CompilationUnit      : 1
+FloatingPointType    : 12
+Goal                 : 0
+ImportDeclaration    : 38 39
+ImportDeclarations   : 30 31 33 35 38
+IntegralType         : 11
+LONG                 : 17
+Literal              : 
+Modifier             : 48 49
+Modifiers            : 48 52 53
+Name                 : 22 23 29 37 44 45
+NumericType          : 9
+PackageDeclaration   : 30 31 32 34
+PrimitiveType        : 7 24
+QualifiedName        : 27
+ReferenceType        : 8
+SimpleName           : 26
+SingleTypeImportDeclaration : 42
+Super                : 52 54
+Type                 : 
+TypeDeclaration      : 40 41
+TypeDeclarations     : 30 32 33 36 40
+TypeImportOnDemandDeclaration : 43
+

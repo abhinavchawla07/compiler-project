@@ -127,97 +127,97 @@ class Tokens(object):
         return operators + separators + misc + reserved
 
 
+# rules for tokens
+# identifiers
+def t_FLOAT_CONSTANT(t):
+    r'\d*\.\d+'
+    t.value = float(t.value)
+    return t
+
+def t_INT_CONSTANT(t):
+    r'\d+'
+    t.value = int(t.value)
+    return t
+
+t_STR_CONSTANT =  r'\"([^\\\n]|(\\.))*?\"'
+t_CHAR_CONSTANT = r"\'([^\\\n]|(\\.))?\'"
+
+# separators
+t_L_PAREN = r'\('
+t_R_PAREN = r'\)'
+t_BLOCK_OPENER = r'\{'
+t_BLOCK_CLOSER = r'\}'
+t_L_SQBR = r'\['
+t_R_SQBR = r'\]'
+t_SEMICOLON = r';'
+t_COMMA = r','
+
+# operators
+t_PLUS = r'\+'
+t_MINUS = r'\-'
+t_MULT = r'\*'
+t_DIV = r'/'
+t_MOD = r'%'
+t_GREATER = r'>'
+t_LESSER = r'<'
+t_GREQ = r'>='
+t_LESEQ = r'<='
+t_EQUALS = r'=='
+t_ASSIGN = r'='
+t_NOTEQ = r'!='
+t_LOGIC_AND = r'&&'
+t_LOGIC_OR = r'\|\|'
+t_LOGIC_NOT = r'!'
+t_BIT_AND = r'&'
+t_BIT_OR = r'\|'
+t_BIT_NOT = r'~'
+t_BIT_XOR = r'\^'
+t_INCR = r'\+\+'
+t_DECR = r'\-\-'
+t_DOT = r'\.'
+t_PLUSEQ = r'\+='
+t_MINUSEQ = r'\-='
+t_MULTEQ = r'\*='
+t_DIVEQ = r'/='
+t_MODEQ = r'%='
+t_COLON = r':'
+t_QUES = r'\?'
+t_LSHIFT = r'<<'
+t_RSHIFT = r'>>'
+t_LSHIFTEQ = r'<<='
+t_RSHIFTEQ = r'>>='
+t_INSTANCEOF = r'instanceof'
+
+t_ignore = ' \t'
+
+def t_IDENTIFIER(t):
+    r'[a-zA-Z_][a-zA-Z_0-9]*'
+    t.type = tokObj.reserved.get(t.value,'IDENTIFIER')
+    return t
+
+def t_newline(t):
+    r'\n+'
+    t.lexer.lineno += len(t.value)
+
+def t_INLINE_COMMENT(t):
+    r'//.*'
+    return t
+
+def t_BLOCK_COMMENT(t):
+    r'/\*(.|\n)*?\*/'
+    t.lexer.lineno += t.value.count('\n')
+    return t
+
+def t_error(t):
+    print("Illegal Character '%s'" % t.value[0])
+    t.lexer.skip(1)
+
+tokObj = Tokens()
+tokens = tokObj.getTokens()
+lexer = lex.lex()
+
 def main():
 
-    # rules for tokens
-    # identifiers
-    def t_FLOAT_CONSTANT(t):
-        r'\d*\.\d+'
-        t.value = float(t.value)
-        return t
-
-    def t_INT_CONSTANT(t):
-        r'\d+'
-        t.value = int(t.value)
-        return t
-
-    t_STR_CONSTANT =  r'\"([^\\\n]|(\\.))*?\"'
-    t_CHAR_CONSTANT = r"\'([^\\\n]|(\\.))?\'"
-
-    # separators
-    t_L_PAREN = r'\('
-    t_R_PAREN = r'\)'
-    t_BLOCK_OPENER = r'\{'
-    t_BLOCK_CLOSER = r'\}'
-    t_L_SQBR = r'\['
-    t_R_SQBR = r'\]'
-    t_SEMICOLON = r';'
-    t_COMMA = r','
-
-    # operators
-    t_PLUS = r'\+'
-    t_MINUS = r'\-'
-    t_MULT = r'\*'
-    t_DIV = r'/'
-    t_MOD = r'%'
-    t_GREATER = r'>'
-    t_LESSER = r'<'
-    t_GREQ = r'>='
-    t_LESEQ = r'<='
-    t_EQUALS = r'=='
-    t_ASSIGN = r'='
-    t_NOTEQ = r'!='
-    t_LOGIC_AND = r'&&'
-    t_LOGIC_OR = r'\|\|'
-    t_LOGIC_NOT = r'!'
-    t_BIT_AND = r'&'
-    t_BIT_OR = r'\|'
-    t_BIT_NOT = r'~'
-    t_BIT_XOR = r'\^'
-    t_INCR = r'\+\+'
-    t_DECR = r'\-\-'
-    t_DOT = r'\.'
-    t_PLUSEQ = r'\+='
-    t_MINUSEQ = r'\-='
-    t_MULTEQ = r'\*='
-    t_DIVEQ = r'/='
-    t_MODEQ = r'%='
-    t_COLON = r':'
-    t_QUES = r'\?'
-    t_LSHIFT = r'<<'
-    t_RSHIFT = r'>>'
-    t_LSHIFTEQ = r'<<='
-    t_RSHIFTEQ = r'>>='
-    t_INSTANCEOF = r'instanceof'
-
-    t_ignore = ' \t'
-
-    def t_IDENTIFIER(t):
-        r'[a-zA-Z_][a-zA-Z_0-9]*'
-        t.type = tokObj.reserved.get(t.value,'IDENTIFIER')
-        return t
-
-    def t_newline(t):
-        r'\n+'
-        t.lexer.lineno += len(t.value)
-
-    def t_INLINE_COMMENT(t):
-        r'//.*'
-        return t
-
-    def t_BLOCK_COMMENT(t):
-        r'/\*(.|\n)*?\*/'
-        t.lexer.lineno += t.value.count('\n')
-        return t
-
-    def t_error(t):
-        print("Illegal Character '%s'" % t.value[0])
-        t.lexer.skip(1)
-
-
-    tokObj = Tokens()
-    tokens = tokObj.getTokens()
-    lexer = lex.lex()
     code = open(sys.argv[1],"r").read()
     lexer.input(code)
 
