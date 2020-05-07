@@ -26,7 +26,6 @@ Unused terminals:
     DO
     ELSE
     EQUALS
-    EXTENDS
     FINALLY
     FOR
     GREATER
@@ -125,6 +124,7 @@ Rule 52    ClassDeclaration -> Modifiers CLASS IDENTIFIER Super ClassBody
 Rule 53    ClassDeclaration -> Modifiers CLASS IDENTIFIER ClassBody
 Rule 54    ClassDeclaration -> CLASS IDENTIFIER Super ClassBody
 Rule 55    ClassDeclaration -> CLASS IDENTIFIER ClassBody
+Rule 56    Super -> EXTENDS ClassType
 
 Terminals, with rules where they appear
 
@@ -159,7 +159,7 @@ DOT                  : 29 45
 DOUBLE               : 19
 ELSE                 : 
 EQUALS               : 
-EXTENDS              : 
+EXTENDS              : 56
 FINAL                : 50
 FINALLY              : 
 FLOAT                : 18
@@ -222,7 +222,7 @@ Nonterminals, with rules where they appear
 ArrayType            : 21 25
 ClassBody            : 52 53 54 55
 ClassDeclaration     : 46
-ClassType            : 20
+ClassType            : 20 56
 CompilationUnit      : 1
 FloatingPointType    : 12
 Goal                 : 0

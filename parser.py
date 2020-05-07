@@ -101,8 +101,8 @@ def p_ImportDeclarations(t):
     rules_stored.append(t.slice)
 
 def p_TypeDeclarations(t):
-    '''TypeDeclarations : TypeDeclarations TypeDeclaration
-    | TypeDeclaration'''
+    '''TypeDeclarations : TypeDeclaration
+    | TypeDeclarations TypeDeclaration'''
     rules_stored.append(t.slice)
 
 def p_ImportDeclaration(t):
@@ -125,8 +125,8 @@ def p_TypeDeclaration(t):
 
 # class
 def p_Modifiers(t):
-    '''Modifiers : Modifiers Modifier
-    | Modifier'''
+    '''Modifiers : Modifier
+    | Modifiers Modifier'''
     rules_stored.append(t.slice)
 
 def p_modifier(t):
@@ -141,6 +141,130 @@ def p_ClassDeclaration(t):
     | CLASS IDENTIFIER ClassBody'''
     rules_stored.append(t.slice)
 
+def p_Super(t):
+    '''Super : EXTENDS ClassType'''
+    rules_stored.append(t.slice)
+
+def p_ClassBody(t):
+    '''ClassBody : BLOCK_OPENER ClassBodyDeclarations BLOCK_CLOSER
+    | BLOCK_OPENER BLOCK_CLOSER'''
+    rules_stored.append(t.slice)
+
+def p_ClassBodyDeclarations(t):
+    '''ClassBodyDeclarations : ClassBodyDeclarations ClassBodyDeclaration
+    | ClassBodyDeclaration'''
+    rules_stored.append(t.slice)
+
+def p_ClassBodyDeclaration(t):
+    '''ClassBodyDeclaration : ClassMemberDeclaration
+    | StaticInitializer
+    | ConstructorDeclaration'''
+    rules_stored.append(t.slice)
+
+def p_ClassMemberDeclaration(t):
+    '''ClassMemberDeclaration : MethodDeclaration
+    | FieldDeclaration'''
+    rules_stored.append(t.slice)
+
+def p_MethodDeclaration(t):
+    '''MethodDeclaration : MethodHeader MethodBody'''
+    rules_stored.append(t.slice)
+
+def p_MethodHeader(t):
+    '''MethodHeader : Modifiers Type MethodDeclarator Throws
+    | Modifiers VOID MethodDeclarator Throws
+    | Type MethodDeclarator Throws
+    | VOID MethodDeclarator Throws
+    | Modifiers Type MethodDeclarator
+    | Modifiers VOID MethodDeclarator
+    | Type MethodDeclarator
+    | VOID MethodDeclarator'''
+    rules_stored.append(t.slice)
+
+def p_MethodDeclarator(t):
+    '''MethodDeclarator : IDENTIFIER L_PAREN R_PAREN
+    | IDENTIFIER L_PAREN FormalParameterList R_PAREN'''
+    rules_stored.append(t.slice)
+
+def p_FormalParametersList(t):
+    '''FormalParameterList : FormalParameter
+    | FormalParameterList COMMA FormalParameter'''
+    rules_stored.append(t.slice)
+
+def p_FormalParameter(t):
+    '''FormalParameter : Type VariableDeclaratorId'''
+    rules_stored.append(t.slice)
+
+def p_Throws(t):
+    '''Throws : THROWS ClassTypeList'''
+    rules_stored.append(t.slice)
+
+def p_ClassTypeList(t):
+    '''ClassTypeList : ClassType
+    | ClassTypeList COMMA ClassType'''
+    rules_stored.append(t.slice)
+
+def p_MethodBody(t):
+    '''MethodBody : Block
+    | SEMICOLON'''
+    rules_stored.append(t.slice)
+
+def p_FieldDeclaration(t):
+    '''FieldDeclaration : Modifiers Type VariableDeclarators SEMICOLON
+    | Type VariableDeclarators SEMICOLON'''
+    rules_stored.append(t.slice)
+
+def p_VariableDeclarators(t):
+    '''VariableDeclarators : VariableDeclarator
+    | VariableDeclarators COMMA VariableDeclarator'''
+    rules_stored.append(t.slice)
+
+def p_VariableDeclarator(t):
+    '''VariableDeclarator : VariableDeclaratorId
+    | VariableDeclaratorId ASSIGN VariableInitializer'''
+    rules_stored.append(t.slice)
+
+def p_VariableDeclaratorId(t):
+    '''VariableDeclaratorId : IDENTIFIER
+    | VariableDeclaratorId L_SQBR R_SQBR'''
+    rules_stored.append(t.slice)
+
+def p_VariableInitializer(t):
+    '''VariableInitializer : Expression
+    | ArrayInitializer'''
+    rules_stored.append(t.slice)
+
+def p_StaticInitializer(t):
+    '''StaticInitializer : STATIC Block'''
+    rules_stored.append(t.slice)
+
+def p_ConstructorDeclaration(t):
+    '''ConstructorDeclaration : Modifiers ConstructorDeclarator Throws ConstructorBody
+    | Modifiers ConstructorDeclarator ConstructorBody
+    | ConstructorDeclarator Throws ConstructorBody
+    | ConstructorDeclarator ConstructorBody'''
+    rules_stored.append(t.slice)
+
+def p_ConstructorDeclarator(t):
+    '''ConstructorDeclarator : SimpleName L_PAREN FormalParameterList R_PAREN
+    | SimpleName L_PAREN R_PAREN'''
+    rules_stored.append(t.slice)
+
+def p_ConstructorBody(t):
+    '''ConstructorBody : BLOCK_OPENER ExplicitConstructorInvocation BlockStatements BLOCK_CLOSER
+    | BLOCK_OPENER ExplicitConstructorInvocation BLOCK_CLOSER
+    | BLOCK_OPENER BlockStatements BLOCK_CLOSER
+    | BLOCK_OPENER BLOCK_CLOSER'''
+    rules_stored.append(t.slice)
+
+def p_ExplicitConstructorInvocation(t):
+    '''ExplicitConstructorInvocation : THIS L_PAREN ArgumentList R_PAREN STMT_TERMINATOR
+    | THIS L_PAREN R_PAREN STMT_TERMINATOR
+    | SUPER L_PAREN ArgumentList R_PAREN STMT_TERMINATOR
+    | SUPER L_PAREN R_PAREN STMT_TERMINATOR'''
+    rules_stored.append(t.slice)
+
+#########################End of Rules###################################
 def store_output(rules_stored):
     print("Java Parser output\n")
     print(rules_stored)
