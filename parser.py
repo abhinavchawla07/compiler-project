@@ -69,3 +69,49 @@ def p_SimpleName(t):
 def p_QualifiedName(t):
     '''QualifiedName: Name DOT IDENTIFIER'''
     rules_stored.append(t.slice)
+
+# compile unit
+
+def p_CompilationUnit(t):
+    '''
+    CompilationUnit:PackageDeclaration ImportDeclarations TypeDeclarations
+                    |PackageDeclaration ImportDeclarations
+                    |PackageDeclaration TypeDeclarations
+                    |ImportDeclarations TypeDeclarations
+                    |PackageDeclaration
+                    |ImportDeclarations
+                    |TypeDeclarations'''
+    rules_stored.append(t.slice)
+
+# declarations
+
+def p_PackageDeclaration(t):
+    '''PackageDeclaration: PACKAGE Name SEMICOLON'''
+    rules_stored.append(t.slice)
+
+def p_ImportDeclarations(t):
+    '''ImportDeclarations: ImportDeclarations ImportDeclaration
+                          |ImportDeclaration'''
+    rules_stored.append(t.slice)
+
+def p_TypeDeclarations(t):
+    '''TypeDeclarations: TypeDeclarations TypeDeclaration
+                        |TypeDeclaration'''
+    rules_stored.append(t.slice)
+
+def p_ImportDeclaration(t):
+    '''ImportDeclaration: SingleTypeImportDeclaration
+                         |TypeImportOnDemandDeclaration'''
+    rules_stored.append(t.slice)
+
+def p_SingleTypeImportDeclaration(t):
+    '''SingleTypeImportDeclaration: IMPORT Name SEMICOLON'''
+    rules_stored.append(t.slice)
+
+def p_TypeImportOnDemandDeclaration(t):
+    '''TypeImportOnDemandDeclaration: IMPORT Name DOT MULT SEMICOLON'''
+    rules_stored.append(t.slice)
+
+def p_TypeDeclaration(t):
+    '''TypeDeclaration: ClassDeclaration|SEMICOLON'''
+    rules_stored.append(t.slice)
