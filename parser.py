@@ -85,7 +85,8 @@ def p_CompilationUnit(t):
     | ImportDeclarations TypeDeclarations
     | PackageDeclaration
     | ImportDeclarations
-    | TypeDeclarations'''
+    | TypeDeclarations
+    |'''
     rules_stored.append(t.slice)
 
 # declarations
@@ -336,7 +337,7 @@ def p_EmptyStatement(t):
     '''EmptyStatement : SEMICOLON'''
     rules_stored.append(t.slice)
 
-def p_ExpressionStatement(p):
+def p_ExpressionStatement(t):
     '''ExpressionStatement : StatementExpression SEMICOLON'''
     rules_stored.append(t.slice)
 
@@ -696,7 +697,7 @@ def p_ConstantExpression(t):
     rules_stored.append(t.slice)
 
 def p_error(t):
-    print("Syntax Error in line %d" %(t.lineno))
+    print("Syntax Error in line %s" %(t.value))
 
 
 #########################End of Rules###################################
@@ -720,7 +721,7 @@ def print_derivation(lhs,rhs,index):
         else:
             print("<span class='final'>" + str(rhs[i].value) + "</span>", end=" ")
 
-    print("</div>")
+    print("</div><br>")
 
 def store_output(rules_stored,filename):
     print('''
@@ -728,7 +729,7 @@ def store_output(rules_stored,filename):
     <html>
     <head>
     <title>Java Parser output</title>
-    <link rel='stylesheet' href='./style.css'>
+    <link rel='stylesheet' href='../style.css'>
     </head>
     <body>
     <h1>Rightmost Derivation of '''+filename+'''.java</h1><hr><br>
@@ -757,7 +758,7 @@ def main():
     code = open(input,'r').read()
     code += '\n'
     parser.parse(code,debug = 0)
-    sys.stdout = open(filename + ".html",'w')
+    sys.stdout = open("output_html_files/"+filename + ".html",'w')
     store_output(rules_stored,filename)
 
 if __name__ == "__main__":
