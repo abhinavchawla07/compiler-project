@@ -39,8 +39,7 @@ def p_IntegralType(t):
     '''IntegralType : BYTE
     | SHORT
     | INT
-    | CHAR
-    | LONG'''
+    | CHAR'''
     rules_stored.append(t.slice)
 
 def p_FloatingPointType(t):
@@ -462,6 +461,243 @@ def p_ForStatement(t):
     | FOR L_PAREN SEMICOLON SEMICOLON ForUpdate R_PAREN Statement
     | FOR L_PAREN SEMICOLON SEMICOLON R_PAREN Statement'''
     rules_stored.append(t.slice)
+
+def p_StatementExpression(t):
+    '''StatementExpression : Assignment
+    | PreDecrementExpression
+    | PreIncrementExpression
+    | PostDecrementExpression
+    | PostIncrementExpression
+    | ClassInstanceCreationExpression
+    | MethodInvocation'''
+    rules_stored.append(t.slice)
+
+def p_ForInit(t):
+    '''ForInit : StatementExpressionList
+    | LocalVariableDeclaration'''
+    rules_stored.append(t.slice)
+
+def p_ForUpdate(t):
+    '''ForUpdate : StatementExpressionList'''
+    rules_stored.append(t.slice)
+
+def p_StatementExpressionList(t):
+    '''StatementExpressionList : StatementExpression
+    | StatementExpressionList COMMA StatementExpression'''
+    rules_stored.append(t.slice)
+
+def p_Primary(t):
+    '''Primary : PrimaryNoNewArray
+    | ArrayCreationExpression'''
+    rules_stored.append(t.slice)
+
+def p_PrimaryNoNewArray(t):
+    '''PrimaryNoNewArray : Literal
+    | THIS
+    | L_PAREN Expression R_PAREN
+    | ClassInstanceCreationExpression
+    | FieldAccess
+    | MethodInvocation
+    | ArrayAccess'''
+    rules_stored.append(t.slice)
+
+def p_ClassInstanceCreationExpression(t):
+    '''ClassInstanceCreationExpression : NEW ClassType L_PAREN R_PAREN
+    | NEW ClassType L_PAREN ArgumentList R_PAREN'''
+    rules_stored.append(t.slice)
+
+def p_ArgumentList(t):
+    '''ArgumentList : Expression
+    | ArgumentList COMMA Expression'''
+    rules_stored.append(t.slice)
+
+def p_ArrayCreationExpression(t):
+    '''ArrayCreationExpression : NEW PrimitiveType DimExprs Dims
+    | NEW PrimitiveType DimExprs
+    | NEW ClassType DimExprs Dims
+    | NEW ClassType DimExprs'''
+    rules_stored.append(t.slice)
+
+def p_DimExprs(t):
+    '''DimExprs : DimExpr
+    | DimExprs DimExpr'''
+    rules_stored.append(t.slice)
+
+def p_DimExpr(t):
+    "DimExpr : L_SQBR Expression R_SQBR"
+    rules_stored.append(t.slice)
+
+def p_Dims(t):
+    '''Dims : L_SQBR R_SQBR
+    | Dims L_SQBR R_SQBR'''
+    rules_stored.append(t.slice)
+
+def p_FieldAccess(t):
+    '''FieldAccess : Primary DOT IDENTIFIER
+    | SUPER DOT IDENTIFIER'''
+    rules_stored.append(t.slice)
+
+def p_MethodInvocation(t):
+    '''MethodInvocation : Name L_PAREN ArgumentList R_PAREN
+    | Name L_PAREN R_PAREN
+    | Primary DOT IDENTIFIER L_PAREN ArgumentList R_PAREN
+    | Primary DOT IDENTIFIER L_PAREN R_PAREN
+    | SUPER DOT IDENTIFIER L_PAREN ArgumentList R_PAREN
+    | SUPER DOT IDENTIFIER L_PAREN R_PAREN'''
+    rules_stored.append(t.slice)
+
+def p_ArrayAccess(t):
+    '''ArrayAccess : Name L_SQBR Expression R_SQBR
+    | PrimaryNoNewArray L_SQBR Expression R_SQBR'''
+    rules_stored.append(t.slice)
+
+def p_PostfixExpression(t):
+    '''PostfixExpression : Primary
+    | Name
+    | PostIncrementExpression
+    | PostDecrementExpression'''
+    rules_stored.append(t.slice)
+
+def p_PostIncrementExpression(t):
+    '''PostIncrementExpression : PostfixExpression INCR'''
+    rules_stored.append(t.slice)
+
+def p_PostDecrementExpression(t):
+    '''PostDecrementExpression : PostfixExpression DECR'''
+    rules_stored.append(t.slice)
+
+def p_UnaryExpression(t):
+    '''UnaryExpression : PreIncrementExpression
+    | PreDecrementExpression
+    | PLUS UnaryExpression
+    | MINUS UnaryExpression
+    | UnaryExpressionNotPlusMinus'''
+    rules_stored.append(t.slice)
+
+def p_PreIncrementExpression(t):
+    "PreIncrementExpression : INCR UnaryExpression"
+    rules_stored.append(t.slice)
+
+def p_PreDecrementExpression(t):
+    "PreDecrementExpression : DECR UnaryExpression"
+    rules_stored.append(t.slice)
+
+def p_UnaryExpressionNotPlusMinus(t):
+    '''UnaryExpressionNotPlusMinus : PostfixExpression
+    | LOGIC_NOT UnaryExpression
+    | BIT_NOT UnaryExpression
+    | CastExpression'''
+    rules_stored.append(t.slice)
+
+def p_CastExpression(t):
+    '''CastExpression : L_PAREN PrimitiveType Dims R_PAREN UnaryExpression
+    | L_PAREN Expression R_PAREN UnaryExpressionNotPlusMinus
+    | L_PAREN PrimitiveType R_PAREN UnaryExpression
+    | L_PAREN Name Dims R_PAREN UnaryExpressionNotPlusMinus'''
+    rules_stored.append(t.slice)
+
+def p_MultiplicativeExpression(t):
+    '''MultiplicativeExpression : UnaryExpression
+    | MultiplicativeExpression MULT UnaryExpression
+    | MultiplicativeExpression DIV UnaryExpression
+    | MultiplicativeExpression MOD UnaryExpression'''
+    rules_stored.append(t.slice)
+
+def p_AdditiveExpression(t):
+    '''AdditiveExpression : MultiplicativeExpression
+    | AdditiveExpression PLUS MultiplicativeExpression
+    | AdditiveExpression MINUS MultiplicativeExpression'''
+    rules_stored.append(t.slice)
+
+def p_ShiftExpression(t):
+    '''ShiftExpression : AdditiveExpression
+    | ShiftExpression LSHIFT AdditiveExpression
+    | ShiftExpression RSHIFT AdditiveExpression'''
+    rules_stored.append(t.slice)
+
+def p_RelationalExpression(t):
+    '''RelationalExpression : ShiftExpression
+    | RelationalExpression LESSER ShiftExpression
+    | RelationalExpression GREATER ShiftExpression
+    | RelationalExpression LESEQ ShiftExpression
+    | RelationalExpression GREQ ShiftExpression
+    | RelationalExpression INSTANCEOF ReferenceType'''
+    rules_stored.append(t.slice)
+
+def p_EqualityExpression(t):
+    '''EqualityExpression : RelationalExpression
+    | EqualityExpression EQUALS RelationalExpression
+    | EqualityExpression NOTEQ RelationalExpression'''
+    rules_stored.append(t.slice)
+
+def p_AndExpression(t):
+    '''AndExpression : EqualityExpression
+    | AndExpression BIT_AND EqualityExpression'''
+    rules_stored.append(t.slice)
+
+def p_ExclusiveOrExpression(t):
+    '''ExclusiveOrExpression : AndExpression
+    | ExclusiveOrExpression BIT_XOR AndExpression'''
+    rules_stored.append(t.slice)
+
+def p_InclusiveOrExpression(t):
+    '''InclusiveOrExpression : ExclusiveOrExpression
+    | InclusiveOrExpression BIT_OR ExclusiveOrExpression'''
+    rules_stored.append(t.slice)
+
+def p_ConditionalAndExpression(t):
+    '''ConditionalAndExpression : InclusiveOrExpression
+    | ConditionalAndExpression LOGIC_AND InclusiveOrExpression'''
+    rules_stored.append(t.slice)
+
+def p_ConditionalOrExpression(t):
+    '''ConditionalOrExpression : ConditionalAndExpression
+    | ConditionalOrExpression LOGIC_OR ConditionalAndExpression'''
+    rules_stored.append(t.slice)
+
+def p_ConditionalExpression(t):
+    '''ConditionalExpression : ConditionalOrExpression
+    | ConditionalOrExpression QUES Expression COLON ConditionalExpression'''
+    rules_stored.append(t.slice)
+
+def p_AssignmentExpression(t):
+    '''AssignmentExpression : ConditionalExpression
+    | Assignment'''
+    rules_stored.append(t.slice)
+
+def p_Assignment(t):
+    "Assignment : LeftHandSide AssignmentOperator AssignmentExpression"
+    rules_stored.append(t.slice)
+
+def p_LeftHandSide(t):
+    '''LeftHandSide : Name
+    | FieldAccess
+    | ArrayAccess'''
+    rules_stored.append(t.slice)
+
+def p_AssignmentOperator(t):
+    '''AssignmentOperator : ASSIGN
+    | MULTEQ
+    | DIVEQ
+    | MODEQ
+    | PLUSEQ
+    | MINUSEQ
+    | LSHIFTEQ
+    | RSHIFTEQ'''
+    rules_stored.append(t.slice)
+    #check for missing
+
+def p_Expression(t):
+    "Expression : AssignmentExpression"
+    rules_stored.append(t.slice)
+
+def p_ConstantExpression(t):
+    "ConstantExpression : Expression"
+    rules_stored.append(t.slice)
+
+def p_error(t):
+    print("Syntax Error in line %d" %(t.lineno))
+
 
 #########################End of Rules###################################
 def store_output(rules_stored):
