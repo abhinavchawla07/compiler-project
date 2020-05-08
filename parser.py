@@ -258,10 +258,209 @@ def p_ConstructorBody(t):
     rules_stored.append(t.slice)
 
 def p_ExplicitConstructorInvocation(t):
-    '''ExplicitConstructorInvocation : THIS L_PAREN ArgumentList R_PAREN STMT_TERMINATOR
-    | THIS L_PAREN R_PAREN STMT_TERMINATOR
-    | SUPER L_PAREN ArgumentList R_PAREN STMT_TERMINATOR
-    | SUPER L_PAREN R_PAREN STMT_TERMINATOR'''
+    '''ExplicitConstructorInvocation : THIS L_PAREN ArgumentList R_PAREN SEMICOLON
+    | THIS L_PAREN R_PAREN SEMICOLON
+    | SUPER L_PAREN ArgumentList R_PAREN SEMICOLON
+    | SUPER L_PAREN R_PAREN SEMICOLON'''
+    rules_stored.append(t.slice)
+
+# variables and arrays
+
+def p_ArrayInitializer(t):
+    '''ArrayInitializer : BLOCK_OPENER VariableInitializers BLOCK_CLOSER
+    | BLOCK_OPENER BLOCK_CLOSER'''
+    rules_stored.append(t.slice)
+
+def p_VariableInitializers(t):
+    '''VariableInitializers : VariableInitializer
+    | VariableInitializers COMMA VariableInitializer'''
+    rules_stored.append(t.slice)
+
+# block
+
+def p_Block(t):
+    '''Block : BLOCK_OPENER BLOCK_CLOSER
+    | BLOCK_OPENER BlockStatements BLOCK_CLOSER'''
+    rules_stored.append(t.slice)
+
+def p_BlockStatements(t):
+    '''BlockStatements : BlockStatement
+    | BlockStatements BlockStatement'''
+    rules_stored.append(t.slice)
+
+def p_BlockStatement(t):
+    '''BlockStatement : LocalVariableDeclarationStatement
+    | Statement'''
+    rules_stored.append(t.slice)
+
+def p_LocalVariableDeclarationStatement(t):
+    '''LocalVariableDeclarationStatement : LocalVariableDeclaration SEMICOLON'''
+    rules_stored.append(t.slice)
+
+def p_LocalVariableDeclaration(t):
+    '''LocalVariableDeclaration : Type VariableDeclarators'''
+    rules_stored.append(t.slice)
+
+
+# statements
+def p_Statement(t):
+    '''Statement : StatementWithoutTrailingSubstatement
+    | LabeledStatement
+    | IfThenStatement
+    | IfThenElseStatement
+    | WhileStatement
+    | ForStatement'''
+    rules_stored.append(t.slice)
+
+def p_StatementNoShortIf(t):
+    '''StatementNoShortIf : StatementWithoutTrailingSubstatement
+    | LabeledStatementNoShortIf
+    | IfThenElseStatementNoShortIf
+    | WhileStatementNoShortIf
+    | ForStatementNoShortIf'''
+    rules_stored.append(t.slice)
+
+def p_StatementWithoutTrailingSubstatement(t):
+    '''StatementWithoutTrailingSubstatement : Block
+    | EmptyStatement
+    | ExpressionStatement
+    | SwitchStatement
+    | DoStatement
+    | BreakStatement
+    | ContinueStatement
+    | ReturnStatement
+    | ThrowStatement
+    | TryStatement'''
+    rules_stored.append(t.slice)
+
+def p_EmptyStatement(t):
+    '''EmptyStatement : SEMICOLON'''
+    rules_stored.append(t.slice)
+
+def p_ExpressionStatement(p):
+    '''ExpressionStatement : StatementExpression SEMICOLON'''
+    rules_stored.append(t.slice)
+
+def p_SwitchStatement(t):
+    '''SwitchStatement : SWITCH L_PAREN Expression R_PAREN SwitchBlock'''
+    rules_stored.append(t.slice)
+
+def p_SwitchBlock(t):
+    '''SwitchBlock : BLOCK_OPENER BLOCK_CLOSER
+    | BLOCK_OPENER SwitchBlockStatementGroups SwitchLabels BLOCK_CLOSER
+    | BLOCK_OPENER SwitchBlockStatementGroups BLOCK_CLOSER
+    | BLOCK_OPENER SwitchLabels BLOCK_CLOSER'''
+    rules_stored.append(t.slice)
+
+def p_SwitchBlockStatementGroups(t):
+    '''SwitchBlockStatementGroups : SwitchBlockStatementGroup
+    | SwitchBlockStatementGroups SwitchBlockStatementGroup'''
+    rules_stored.append(t.slice)
+
+def p_SwitchBlockStatementGroup(t):
+    '''SwitchBlockStatementGroup : SwitchLabels BlockStatements'''
+    rules_stored.append(t.slice)
+
+def p_SwitchLabels(t):
+    '''SwitchLabels : SwitchLabel
+    | SwitchLabels SwitchLabel'''
+    rules_stored.append(t.slice)
+
+def p_SwitchLabel(t):
+    '''SwitchLabel : CASE ConstantExpression COLON
+    | DEFAULT COLON'''
+    rules_stored.append(t.slice)
+
+def p_DoStatement(t):
+    '''DoStatement : DO Statement WHILE L_PAREN Expression R_PAREN SEMICOLON'''
+    rules_stored.append(t.slice)
+
+def p_BreakStatement(t):
+    '''BreakStatement : BREAK IDENTIFIER SEMICOLON
+    | BREAK SEMICOLON'''
+    rules_stored.append(t.slice)
+
+def p_ContinueStatement(t):
+    '''ContinueStatement : CONTINUE IDENTIFIER SEMICOLON
+    | CONTINUE SEMICOLON'''
+    rules_stored.append(t.slice)
+
+def p_ReturnStatement(t):
+    '''ReturnStatement : RETURN Expression SEMICOLON
+    | RETURN SEMICOLON'''
+    rules_stored.append(t.slice)
+
+def p_ThrowStatement(t):
+    '''ThrowStatement : THROW Expression SEMICOLON'''
+    rules_stored.append(t.slice)
+
+def p_TryStatement(t):
+    '''TryStatement : TRY Block Catches
+    | TRY Block Catches Finally
+    | TRY Block Finally'''
+    rules_stored.append(t.slice)
+
+def p_Catches(t):
+    '''Catches : CatchClause
+    | Catches CatchClause'''
+    rules_stored.append(t.slice)
+
+def p_CatchClause(t):
+    '''CatchClause : CATCH L_PAREN FormalParameter R_PAREN Block'''
+    rules_stored.append(t.slice)
+
+def p_Finally(t):
+    '''Finally : FINALLY Block'''
+    rules_stored.append(t.slice)
+
+def p_LabeledStatementNoShortIf(t):
+    '''LabeledStatementNoShortIf : IDENTIFIER COLON StatementNoShortIf'''
+    rules_stored.append(t.slice)
+
+def p_IfThenElseStatementNoShortIf(t):
+    '''IfThenElseStatementNoShortIf : IF L_PAREN Expression R_PAREN StatementNoShortIf ELSE StatementNoShortIf'''
+    rules_stored.append(t.slice)
+
+def p_WhileStatementNoShortIf(t):
+    '''WhileStatementNoShortIf : WHILE L_PAREN Expression R_PAREN StatementNoShortIf'''
+    rules_stored.append(t.slice)
+
+def p_ForStatementNoShortIf(t):
+    '''ForStatementNoShortIf : FOR L_PAREN ForInit SEMICOLON Expression SEMICOLON ForUpdate R_PAREN StatementNoShortIf
+    | FOR L_PAREN SEMICOLON Expression SEMICOLON ForUpdate R_PAREN StatementNoShortIf
+    | FOR L_PAREN ForInit SEMICOLON SEMICOLON ForUpdate R_PAREN StatementNoShortIf
+    | FOR L_PAREN ForInit SEMICOLON Expression SEMICOLON R_PAREN StatementNoShortIf
+    | FOR L_PAREN ForInit SEMICOLON SEMICOLON R_PAREN StatementNoShortIf
+    | FOR L_PAREN SEMICOLON Expression SEMICOLON R_PAREN StatementNoShortIf
+    | FOR L_PAREN SEMICOLON SEMICOLON ForUpdate R_PAREN StatementNoShortIf
+    | FOR L_PAREN SEMICOLON SEMICOLON R_PAREN StatementNoShortIf'''
+    rules_stored.append(t.slice)
+
+def p_LabeledStatement(t):
+    '''LabeledStatement : IDENTIFIER COLON Statement'''
+    rules_stored.append(t.slice)
+
+def p_IfThenStatement(t):
+    '''IfThenStatement : IF L_PAREN Expression R_PAREN Statement'''
+    rules_stored.append(t.slice)
+
+def p_IfThenElseStatement(t):
+    '''IfThenElseStatement : IF L_PAREN Expression R_PAREN StatementNoShortIf ELSE Statement'''
+    rules_stored.append(t.slice)
+
+def p_WhileStatement(t):
+    '''WhileStatement : WHILE L_PAREN Expression R_PAREN Statement'''
+    rules_stored.append(t.slice)
+
+def p_ForStatement(t):
+    '''ForStatement : FOR L_PAREN ForInit SEMICOLON Expression SEMICOLON ForUpdate R_PAREN Statement
+    | FOR L_PAREN SEMICOLON Expression SEMICOLON ForUpdate R_PAREN Statement
+    | FOR L_PAREN ForInit SEMICOLON SEMICOLON ForUpdate R_PAREN Statement
+    | FOR L_PAREN ForInit SEMICOLON Expression SEMICOLON R_PAREN Statement
+    | FOR L_PAREN ForInit SEMICOLON SEMICOLON R_PAREN Statement
+    | FOR L_PAREN SEMICOLON Expression SEMICOLON R_PAREN Statement
+    | FOR L_PAREN SEMICOLON SEMICOLON ForUpdate R_PAREN Statement
+    | FOR L_PAREN SEMICOLON SEMICOLON R_PAREN Statement'''
     rules_stored.append(t.slice)
 
 #########################End of Rules###################################

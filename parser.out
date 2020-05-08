@@ -4,19 +4,15 @@ Unused terminals:
 
     ABSTRACT
     ASSERT
-    ASSIGN
     BIT_AND
     BIT_NOT
     BIT_OR
     BIT_XOR
-    BLOCK_CLOSER
     BLOCK_COMMENT
-    BLOCK_OPENER
     BREAK
     CASE
     CATCH
     COLON
-    COMMA
     CONST
     CONTINUE
     DECR
@@ -41,7 +37,6 @@ Unused terminals:
     LOGIC_OR
     LSHIFT
     LSHIFTEQ
-    L_PAREN
     MINUS
     MINUSEQ
     MOD
@@ -56,14 +51,9 @@ Unused terminals:
     RETURN
     RSHIFT
     RSHIFTEQ
-    R_PAREN
-    SUPER
     SWITCH
-    THIS
     THROW
-    THROWS
     TRY
-    VOID
     WHILE
 
 Grammar
@@ -108,16 +98,16 @@ Rule 36    CompilationUnit -> TypeDeclarations
 Rule 37    PackageDeclaration -> PACKAGE Name SEMICOLON
 Rule 38    ImportDeclarations -> ImportDeclarations ImportDeclaration
 Rule 39    ImportDeclarations -> ImportDeclaration
-Rule 40    TypeDeclarations -> TypeDeclarations TypeDeclaration
-Rule 41    TypeDeclarations -> TypeDeclaration
+Rule 40    TypeDeclarations -> TypeDeclaration
+Rule 41    TypeDeclarations -> TypeDeclarations TypeDeclaration
 Rule 42    ImportDeclaration -> SingleTypeImportDeclaration
 Rule 43    ImportDeclaration -> TypeImportOnDemandDeclaration
 Rule 44    SingleTypeImportDeclaration -> IMPORT Name SEMICOLON
 Rule 45    TypeImportOnDemandDeclaration -> IMPORT Name DOT MULT SEMICOLON
 Rule 46    TypeDeclaration -> ClassDeclaration
 Rule 47    TypeDeclaration -> SEMICOLON
-Rule 48    Modifiers -> Modifiers Modifier
-Rule 49    Modifiers -> Modifier
+Rule 48    Modifiers -> Modifier
+Rule 49    Modifiers -> Modifiers Modifier
 Rule 50    Modifier -> FINAL
 Rule 51    Modifier -> STATIC
 Rule 52    ClassDeclaration -> Modifiers CLASS IDENTIFIER Super ClassBody
@@ -125,19 +115,72 @@ Rule 53    ClassDeclaration -> Modifiers CLASS IDENTIFIER ClassBody
 Rule 54    ClassDeclaration -> CLASS IDENTIFIER Super ClassBody
 Rule 55    ClassDeclaration -> CLASS IDENTIFIER ClassBody
 Rule 56    Super -> EXTENDS ClassType
+Rule 57    ClassBody -> BLOCK_OPENER ClassBodyDeclarations BLOCK_CLOSER
+Rule 58    ClassBody -> BLOCK_OPENER BLOCK_CLOSER
+Rule 59    ClassBodyDeclarations -> ClassBodyDeclarations ClassBodyDeclaration
+Rule 60    ClassBodyDeclarations -> ClassBodyDeclaration
+Rule 61    ClassBodyDeclaration -> ClassMemberDeclaration
+Rule 62    ClassBodyDeclaration -> StaticInitializer
+Rule 63    ClassBodyDeclaration -> ConstructorDeclaration
+Rule 64    ClassMemberDeclaration -> MethodDeclaration
+Rule 65    ClassMemberDeclaration -> FieldDeclaration
+Rule 66    MethodDeclaration -> MethodHeader MethodBody
+Rule 67    MethodHeader -> Modifiers Type MethodDeclarator Throws
+Rule 68    MethodHeader -> Modifiers VOID MethodDeclarator Throws
+Rule 69    MethodHeader -> Type MethodDeclarator Throws
+Rule 70    MethodHeader -> VOID MethodDeclarator Throws
+Rule 71    MethodHeader -> Modifiers Type MethodDeclarator
+Rule 72    MethodHeader -> Modifiers VOID MethodDeclarator
+Rule 73    MethodHeader -> Type MethodDeclarator
+Rule 74    MethodHeader -> VOID MethodDeclarator
+Rule 75    MethodDeclarator -> IDENTIFIER L_PAREN R_PAREN
+Rule 76    MethodDeclarator -> IDENTIFIER L_PAREN FormalParameterList R_PAREN
+Rule 77    FormalParameterList -> FormalParameter
+Rule 78    FormalParameterList -> FormalParameterList COMMA FormalParameter
+Rule 79    FormalParameter -> Type VariableDeclaratorId
+Rule 80    Throws -> THROWS ClassTypeList
+Rule 81    ClassTypeList -> ClassType
+Rule 82    ClassTypeList -> ClassTypeList COMMA ClassType
+Rule 83    MethodBody -> Block
+Rule 84    MethodBody -> SEMICOLON
+Rule 85    FieldDeclaration -> Modifiers Type VariableDeclarators SEMICOLON
+Rule 86    FieldDeclaration -> Type VariableDeclarators SEMICOLON
+Rule 87    VariableDeclarators -> VariableDeclarator
+Rule 88    VariableDeclarators -> VariableDeclarators COMMA VariableDeclarator
+Rule 89    VariableDeclarator -> VariableDeclaratorId
+Rule 90    VariableDeclarator -> VariableDeclaratorId ASSIGN VariableInitializer
+Rule 91    VariableDeclaratorId -> IDENTIFIER
+Rule 92    VariableDeclaratorId -> VariableDeclaratorId L_SQBR R_SQBR
+Rule 93    VariableInitializer -> Expression
+Rule 94    VariableInitializer -> ArrayInitializer
+Rule 95    StaticInitializer -> STATIC Block
+Rule 96    ConstructorDeclaration -> Modifiers ConstructorDeclarator Throws ConstructorBody
+Rule 97    ConstructorDeclaration -> Modifiers ConstructorDeclarator ConstructorBody
+Rule 98    ConstructorDeclaration -> ConstructorDeclarator Throws ConstructorBody
+Rule 99    ConstructorDeclaration -> ConstructorDeclarator ConstructorBody
+Rule 100   ConstructorDeclarator -> SimpleName L_PAREN FormalParameterList R_PAREN
+Rule 101   ConstructorDeclarator -> SimpleName L_PAREN R_PAREN
+Rule 102   ConstructorBody -> BLOCK_OPENER ExplicitConstructorInvocation BlockStatements BLOCK_CLOSER
+Rule 103   ConstructorBody -> BLOCK_OPENER ExplicitConstructorInvocation BLOCK_CLOSER
+Rule 104   ConstructorBody -> BLOCK_OPENER BlockStatements BLOCK_CLOSER
+Rule 105   ConstructorBody -> BLOCK_OPENER BLOCK_CLOSER
+Rule 106   ExplicitConstructorInvocation -> THIS L_PAREN ArgumentList R_PAREN SEMICOLON
+Rule 107   ExplicitConstructorInvocation -> THIS L_PAREN R_PAREN SEMICOLON
+Rule 108   ExplicitConstructorInvocation -> SUPER L_PAREN ArgumentList R_PAREN SEMICOLON
+Rule 109   ExplicitConstructorInvocation -> SUPER L_PAREN R_PAREN SEMICOLON
 
 Terminals, with rules where they appear
 
 ABSTRACT             : 
 ASSERT               : 
-ASSIGN               : 
+ASSIGN               : 90
 BIT_AND              : 
 BIT_NOT              : 
 BIT_OR               : 
 BIT_XOR              : 
-BLOCK_CLOSER         : 
+BLOCK_CLOSER         : 57 58 102 103 104 105
 BLOCK_COMMENT        : 
-BLOCK_OPENER         : 
+BLOCK_OPENER         : 57 58 102 103 104 105
 BOOLEAN              : 10
 BREAK                : 
 BYTE                 : 13
@@ -147,7 +190,7 @@ CHAR                 : 16
 CHAR_CONSTANT        : 4
 CLASS                : 52 53 54 55
 COLON                : 
-COMMA                : 
+COMMA                : 78 82 88
 CONST                : 
 CONTINUE             : 
 DECR                 : 
@@ -167,7 +210,7 @@ FLOAT_CONSTANT       : 3
 FOR                  : 
 GREATER              : 
 GREQ                 : 
-IDENTIFIER           : 28 29 52 53 54 55
+IDENTIFIER           : 28 29 52 53 54 55 75 76 91
 IF                   : 
 IMPORT               : 44 45
 INCR                 : 
@@ -182,8 +225,8 @@ LOGIC_NOT            :
 LOGIC_OR             : 
 LSHIFT               : 
 LSHIFTEQ             : 
-L_PAREN              : 
-L_SQBR               : 23 24 25
+L_PAREN              : 75 76 100 101 106 107 108 109
+L_SQBR               : 23 24 25 92
 MINUS                : 
 MINUSEQ              : 
 MOD                  : 
@@ -201,49 +244,75 @@ QUES                 :
 RETURN               : 
 RSHIFT               : 
 RSHIFTEQ             : 
-R_PAREN              : 
-R_SQBR               : 23 24 25
-SEMICOLON            : 37 44 45 47
+R_PAREN              : 75 76 100 101 106 107 108 109
+R_SQBR               : 23 24 25 92
+SEMICOLON            : 37 44 45 47 84 85 86 106 107 108 109
 SHORT                : 14
-STATIC               : 51
+STATIC               : 51 95
 STR_CONSTANT         : 5
-SUPER                : 
+SUPER                : 108 109
 SWITCH               : 
-THIS                 : 
+THIS                 : 106 107
 THROW                : 
-THROWS               : 
+THROWS               : 80
 TRY                  : 
-VOID                 : 
+VOID                 : 68 70 72 74
 WHILE                : 
 error                : 
 
 Nonterminals, with rules where they appear
 
+ArgumentList         : 106 108
+ArrayInitializer     : 94
 ArrayType            : 21 25
+Block                : 83 95
+BlockStatements      : 102 104
 ClassBody            : 52 53 54 55
+ClassBodyDeclaration : 59 60
+ClassBodyDeclarations : 57 59
 ClassDeclaration     : 46
-ClassType            : 20 56
+ClassMemberDeclaration : 61
+ClassType            : 20 56 81 82
+ClassTypeList        : 80 82
 CompilationUnit      : 1
+ConstructorBody      : 96 97 98 99
+ConstructorDeclaration : 63
+ConstructorDeclarator : 96 97 98 99
+ExplicitConstructorInvocation : 102 103
+Expression           : 93
+FieldDeclaration     : 65
 FloatingPointType    : 12
+FormalParameter      : 77 78
+FormalParameterList  : 76 78 100
 Goal                 : 0
 ImportDeclaration    : 38 39
 ImportDeclarations   : 30 31 33 35 38
 IntegralType         : 11
 LONG                 : 17
 Literal              : 
+MethodBody           : 66
+MethodDeclaration    : 64
+MethodDeclarator     : 67 68 69 70 71 72 73 74
+MethodHeader         : 66
 Modifier             : 48 49
-Modifiers            : 48 52 53
+Modifiers            : 49 52 53 67 68 71 72 85 96 97
 Name                 : 22 23 29 37 44 45
 NumericType          : 9
 PackageDeclaration   : 30 31 32 34
 PrimitiveType        : 7 24
 QualifiedName        : 27
 ReferenceType        : 8
-SimpleName           : 26
+SimpleName           : 26 100 101
 SingleTypeImportDeclaration : 42
+StaticInitializer    : 62
 Super                : 52 54
-Type                 : 
+Throws               : 67 68 69 70 96 98
+Type                 : 67 69 71 73 79 85 86
 TypeDeclaration      : 40 41
-TypeDeclarations     : 30 32 33 36 40
+TypeDeclarations     : 30 32 33 36 41
 TypeImportOnDemandDeclaration : 43
+VariableDeclarator   : 87 88
+VariableDeclaratorId : 79 89 90 92
+VariableDeclarators  : 85 86 88
+VariableInitializer  : 90
 
