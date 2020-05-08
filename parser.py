@@ -677,11 +677,11 @@ def p_LeftHandSide(t):
 
 def p_AssignmentOperator(t):
     '''AssignmentOperator : ASSIGN
+    | PLUSEQ
+    | MINUSEQ
     | MULTEQ
     | DIVEQ
     | MODEQ
-    | PLUSEQ
-    | MINUSEQ
     | LSHIFTEQ
     | RSHIFTEQ'''
     rules_stored.append(t.slice)
@@ -700,9 +700,54 @@ def p_error(t):
 
 
 #########################End of Rules###################################
-def store_output(rules_stored):
-    print("Java Parser output\n")
-    print(rules_stored)
+def print_derivation(lhs,rhs,index):
+    print("<div>")
+    # lhs
+    for i in range (len(lhs)):
+        if(index==i):
+            print("<span class='tochange'>"+str(lhs[i])+"</span>")
+        else:
+            if str(type(lhs[i])) == "<class 'ply.yacc.YaccSymbol'>":
+                print(str(lhs[i]), end=" ")
+            else:
+                print("<span class='final'>" + str(lhs[i].value) + "</span>", end=" ")
+    # arrow
+    print("&nbsp;<span class='arrow'>--></span>&nbsp;", end=" ")
+    # rhs
+    for i in range(len(rhs)):
+        if str(type(rhs[i])) == "<class 'ply.yacc.YaccSymbol'>":
+            print(str(rhs[i]), end=" ")
+        else:
+            print("<span class='final'>" + str(rhs[i].value) + "</span>", end=" ")
+
+    print("</div>")
+
+def store_output(rules_stored,filename):
+    print('''
+    <!DOCTYPE html>
+    <html>
+    <head>
+    <title>Java Parser output</title>
+    <link rel='stylesheet' href='./style.css'>
+    </head>
+    <body>
+    <h1>Rightmost Derivation of '''+filename+'''.java</h1><hr><br>
+    ''')
+    # print(rules_stored)
+    rhs = []
+    lhs = [rules_stored[-1][0]]
+    for rule in rules_stored[::-1]:
+        try:
+            index = lhs.index(rule[0])
+        except ValueError:
+            print("Error!")
+            return
+        rhs_part = [sym for sym in rule[1:]]
+        rhs = rhs[:index] + rhs_part + rhs[index+1:]
+        print_derivation(lhs,rhs,index)
+        lhs = rhs
+
+    print("</body>\n</html>")
 
 def main():
     tokens = lexer.tokens
@@ -712,8 +757,8 @@ def main():
     code = open(input,'r').read()
     code += '\n'
     parser.parse(code,debug = 0)
-    sys.stdout = open(filename + ".txt",'w')
-    store_output(rules_stored)
+    sys.stdout = open(filename + ".html",'w')
+    store_output(rules_stored,filename)
 
 if __name__ == "__main__":
     main()

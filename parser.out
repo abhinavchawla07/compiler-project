@@ -308,11 +308,11 @@ Rule 293   LeftHandSide -> Name
 Rule 294   LeftHandSide -> FieldAccess
 Rule 295   LeftHandSide -> ArrayAccess
 Rule 296   AssignmentOperator -> ASSIGN
-Rule 297   AssignmentOperator -> MULTEQ
-Rule 298   AssignmentOperator -> DIVEQ
-Rule 299   AssignmentOperator -> MODEQ
-Rule 300   AssignmentOperator -> PLUSEQ
-Rule 301   AssignmentOperator -> MINUSEQ
+Rule 297   AssignmentOperator -> PLUSEQ
+Rule 298   AssignmentOperator -> MINUSEQ
+Rule 299   AssignmentOperator -> MULTEQ
+Rule 300   AssignmentOperator -> DIVEQ
+Rule 301   AssignmentOperator -> MODEQ
 Rule 302   AssignmentOperator -> LSHIFTEQ
 Rule 303   AssignmentOperator -> RSHIFTEQ
 Rule 304   Expression -> AssignmentExpression
@@ -345,7 +345,7 @@ CONTINUE             : 159 160
 DECR                 : 243 250
 DEFAULT              : 155
 DIV                  : 261
-DIVEQ                : 298
+DIVEQ                : 300
 DO                   : 156
 DOT                  : 28 44 228 229 232 233 234 235
 DOUBLE               : 18
@@ -377,18 +377,18 @@ LSHIFTEQ             : 302
 L_PAREN              : 74 75 99 100 105 106 107 108 144 156 169 172 173 174 175 176 177 178 179 180 181 183 184 185 186 187 188 189 190 191 192 193 210 215 216 230 231 232 233 234 235 255 256 257 258
 L_SQBR               : 22 23 24 91 225 226 227 236 237
 MINUS                : 247 265
-MINUSEQ              : 301
+MINUSEQ              : 298
 MOD                  : 262
-MODEQ                : 299
+MODEQ                : 301
 MULT                 : 44 260
-MULTEQ               : 297
+MULTEQ               : 299
 NATIVE               : 
 NEW                  : 215 216 219 220 221 222
 NOTEQ                : 277
 NULL                 : 6
 PACKAGE              : 36
 PLUS                 : 246 264
-PLUSEQ               : 300
+PLUSEQ               : 297
 QUES                 : 289
 RETURN               : 161 162
 RSHIFT               : 268
@@ -1014,11 +1014,11 @@ state 25
     L_PAREN         reduce using rule 25 (Name -> SimpleName .)
     IDENTIFIER      reduce using rule 25 (Name -> SimpleName .)
     ASSIGN          reduce using rule 25 (Name -> SimpleName .)
+    PLUSEQ          reduce using rule 25 (Name -> SimpleName .)
+    MINUSEQ         reduce using rule 25 (Name -> SimpleName .)
     MULTEQ          reduce using rule 25 (Name -> SimpleName .)
     DIVEQ           reduce using rule 25 (Name -> SimpleName .)
     MODEQ           reduce using rule 25 (Name -> SimpleName .)
-    PLUSEQ          reduce using rule 25 (Name -> SimpleName .)
-    MINUSEQ         reduce using rule 25 (Name -> SimpleName .)
     LSHIFTEQ        reduce using rule 25 (Name -> SimpleName .)
     RSHIFTEQ        reduce using rule 25 (Name -> SimpleName .)
     DECR            reduce using rule 25 (Name -> SimpleName .)
@@ -1061,11 +1061,11 @@ state 26
     IDENTIFIER      reduce using rule 26 (Name -> QualifiedName .)
     L_PAREN         reduce using rule 26 (Name -> QualifiedName .)
     ASSIGN          reduce using rule 26 (Name -> QualifiedName .)
+    PLUSEQ          reduce using rule 26 (Name -> QualifiedName .)
+    MINUSEQ         reduce using rule 26 (Name -> QualifiedName .)
     MULTEQ          reduce using rule 26 (Name -> QualifiedName .)
     DIVEQ           reduce using rule 26 (Name -> QualifiedName .)
     MODEQ           reduce using rule 26 (Name -> QualifiedName .)
-    PLUSEQ          reduce using rule 26 (Name -> QualifiedName .)
-    MINUSEQ         reduce using rule 26 (Name -> QualifiedName .)
     LSHIFTEQ        reduce using rule 26 (Name -> QualifiedName .)
     RSHIFTEQ        reduce using rule 26 (Name -> QualifiedName .)
     DECR            reduce using rule 26 (Name -> QualifiedName .)
@@ -1109,11 +1109,11 @@ state 27
     IDENTIFIER      reduce using rule 27 (SimpleName -> IDENTIFIER .)
     COMMA           reduce using rule 27 (SimpleName -> IDENTIFIER .)
     ASSIGN          reduce using rule 27 (SimpleName -> IDENTIFIER .)
+    PLUSEQ          reduce using rule 27 (SimpleName -> IDENTIFIER .)
+    MINUSEQ         reduce using rule 27 (SimpleName -> IDENTIFIER .)
     MULTEQ          reduce using rule 27 (SimpleName -> IDENTIFIER .)
     DIVEQ           reduce using rule 27 (SimpleName -> IDENTIFIER .)
     MODEQ           reduce using rule 27 (SimpleName -> IDENTIFIER .)
-    PLUSEQ          reduce using rule 27 (SimpleName -> IDENTIFIER .)
-    MINUSEQ         reduce using rule 27 (SimpleName -> IDENTIFIER .)
     LSHIFTEQ        reduce using rule 27 (SimpleName -> IDENTIFIER .)
     RSHIFTEQ        reduce using rule 27 (SimpleName -> IDENTIFIER .)
     INCR            reduce using rule 27 (SimpleName -> IDENTIFIER .)
@@ -1414,11 +1414,11 @@ state 42
     IDENTIFIER      reduce using rule 28 (QualifiedName -> Name DOT IDENTIFIER .)
     L_PAREN         reduce using rule 28 (QualifiedName -> Name DOT IDENTIFIER .)
     ASSIGN          reduce using rule 28 (QualifiedName -> Name DOT IDENTIFIER .)
+    PLUSEQ          reduce using rule 28 (QualifiedName -> Name DOT IDENTIFIER .)
+    MINUSEQ         reduce using rule 28 (QualifiedName -> Name DOT IDENTIFIER .)
     MULTEQ          reduce using rule 28 (QualifiedName -> Name DOT IDENTIFIER .)
     DIVEQ           reduce using rule 28 (QualifiedName -> Name DOT IDENTIFIER .)
     MODEQ           reduce using rule 28 (QualifiedName -> Name DOT IDENTIFIER .)
-    PLUSEQ          reduce using rule 28 (QualifiedName -> Name DOT IDENTIFIER .)
-    MINUSEQ         reduce using rule 28 (QualifiedName -> Name DOT IDENTIFIER .)
     LSHIFTEQ        reduce using rule 28 (QualifiedName -> Name DOT IDENTIFIER .)
     RSHIFTEQ        reduce using rule 28 (QualifiedName -> Name DOT IDENTIFIER .)
     DECR            reduce using rule 28 (QualifiedName -> Name DOT IDENTIFIER .)
@@ -3955,11 +3955,11 @@ state 130
     DOT             reduce using rule 27 (SimpleName -> IDENTIFIER .)
     IDENTIFIER      reduce using rule 27 (SimpleName -> IDENTIFIER .)
     ASSIGN          reduce using rule 27 (SimpleName -> IDENTIFIER .)
+    PLUSEQ          reduce using rule 27 (SimpleName -> IDENTIFIER .)
+    MINUSEQ         reduce using rule 27 (SimpleName -> IDENTIFIER .)
     MULTEQ          reduce using rule 27 (SimpleName -> IDENTIFIER .)
     DIVEQ           reduce using rule 27 (SimpleName -> IDENTIFIER .)
     MODEQ           reduce using rule 27 (SimpleName -> IDENTIFIER .)
-    PLUSEQ          reduce using rule 27 (SimpleName -> IDENTIFIER .)
-    MINUSEQ         reduce using rule 27 (SimpleName -> IDENTIFIER .)
     LSHIFTEQ        reduce using rule 27 (SimpleName -> IDENTIFIER .)
     RSHIFTEQ        reduce using rule 27 (SimpleName -> IDENTIFIER .)
     DECR            reduce using rule 27 (SimpleName -> IDENTIFIER .)
@@ -4745,11 +4745,11 @@ state 150
     L_SQBR          shift and go to state 251
     L_PAREN         shift and go to state 252
     ASSIGN          reduce using rule 293 (LeftHandSide -> Name .)
+    PLUSEQ          reduce using rule 293 (LeftHandSide -> Name .)
+    MINUSEQ         reduce using rule 293 (LeftHandSide -> Name .)
     MULTEQ          reduce using rule 293 (LeftHandSide -> Name .)
     DIVEQ           reduce using rule 293 (LeftHandSide -> Name .)
     MODEQ           reduce using rule 293 (LeftHandSide -> Name .)
-    PLUSEQ          reduce using rule 293 (LeftHandSide -> Name .)
-    MINUSEQ         reduce using rule 293 (LeftHandSide -> Name .)
     LSHIFTEQ        reduce using rule 293 (LeftHandSide -> Name .)
     RSHIFTEQ        reduce using rule 293 (LeftHandSide -> Name .)
     DECR            reduce using rule 239 (PostfixExpression -> Name .)
@@ -4761,20 +4761,20 @@ state 151
 
     (292) Assignment -> LeftHandSide . AssignmentOperator AssignmentExpression
     (296) AssignmentOperator -> . ASSIGN
-    (297) AssignmentOperator -> . MULTEQ
-    (298) AssignmentOperator -> . DIVEQ
-    (299) AssignmentOperator -> . MODEQ
-    (300) AssignmentOperator -> . PLUSEQ
-    (301) AssignmentOperator -> . MINUSEQ
+    (297) AssignmentOperator -> . PLUSEQ
+    (298) AssignmentOperator -> . MINUSEQ
+    (299) AssignmentOperator -> . MULTEQ
+    (300) AssignmentOperator -> . DIVEQ
+    (301) AssignmentOperator -> . MODEQ
     (302) AssignmentOperator -> . LSHIFTEQ
     (303) AssignmentOperator -> . RSHIFTEQ
 
     ASSIGN          shift and go to state 254
-    MULTEQ          shift and go to state 255
-    DIVEQ           shift and go to state 256
-    MODEQ           shift and go to state 257
-    PLUSEQ          shift and go to state 258
-    MINUSEQ         shift and go to state 259
+    PLUSEQ          shift and go to state 255
+    MINUSEQ         shift and go to state 256
+    MULTEQ          shift and go to state 257
+    DIVEQ           shift and go to state 258
+    MODEQ           shift and go to state 259
     LSHIFTEQ        shift and go to state 260
     RSHIFTEQ        shift and go to state 261
 
@@ -5050,11 +5050,11 @@ state 158
     (212) PrimaryNoNewArray -> FieldAccess .
 
     ASSIGN          reduce using rule 294 (LeftHandSide -> FieldAccess .)
+    PLUSEQ          reduce using rule 294 (LeftHandSide -> FieldAccess .)
+    MINUSEQ         reduce using rule 294 (LeftHandSide -> FieldAccess .)
     MULTEQ          reduce using rule 294 (LeftHandSide -> FieldAccess .)
     DIVEQ           reduce using rule 294 (LeftHandSide -> FieldAccess .)
     MODEQ           reduce using rule 294 (LeftHandSide -> FieldAccess .)
-    PLUSEQ          reduce using rule 294 (LeftHandSide -> FieldAccess .)
-    MINUSEQ         reduce using rule 294 (LeftHandSide -> FieldAccess .)
     LSHIFTEQ        reduce using rule 294 (LeftHandSide -> FieldAccess .)
     RSHIFTEQ        reduce using rule 294 (LeftHandSide -> FieldAccess .)
     L_SQBR          reduce using rule 212 (PrimaryNoNewArray -> FieldAccess .)
@@ -5095,11 +5095,11 @@ state 159
     (214) PrimaryNoNewArray -> ArrayAccess .
 
     ASSIGN          reduce using rule 295 (LeftHandSide -> ArrayAccess .)
+    PLUSEQ          reduce using rule 295 (LeftHandSide -> ArrayAccess .)
+    MINUSEQ         reduce using rule 295 (LeftHandSide -> ArrayAccess .)
     MULTEQ          reduce using rule 295 (LeftHandSide -> ArrayAccess .)
     DIVEQ           reduce using rule 295 (LeftHandSide -> ArrayAccess .)
     MODEQ           reduce using rule 295 (LeftHandSide -> ArrayAccess .)
-    PLUSEQ          reduce using rule 295 (LeftHandSide -> ArrayAccess .)
-    MINUSEQ         reduce using rule 295 (LeftHandSide -> ArrayAccess .)
     LSHIFTEQ        reduce using rule 295 (LeftHandSide -> ArrayAccess .)
     RSHIFTEQ        reduce using rule 295 (LeftHandSide -> ArrayAccess .)
     L_SQBR          reduce using rule 214 (PrimaryNoNewArray -> ArrayAccess .)
@@ -7112,11 +7112,11 @@ state 210
     (239) PostfixExpression -> Name .
 
     ASSIGN          reduce using rule 293 (LeftHandSide -> Name .)
+    PLUSEQ          reduce using rule 293 (LeftHandSide -> Name .)
+    MINUSEQ         reduce using rule 293 (LeftHandSide -> Name .)
     MULTEQ          reduce using rule 293 (LeftHandSide -> Name .)
     DIVEQ           reduce using rule 293 (LeftHandSide -> Name .)
     MODEQ           reduce using rule 293 (LeftHandSide -> Name .)
-    PLUSEQ          reduce using rule 293 (LeftHandSide -> Name .)
-    MINUSEQ         reduce using rule 293 (LeftHandSide -> Name .)
     LSHIFTEQ        reduce using rule 293 (LeftHandSide -> Name .)
     RSHIFTEQ        reduce using rule 293 (LeftHandSide -> Name .)
     L_SQBR          shift and go to state 306
@@ -8695,11 +8695,11 @@ state 242
 
     L_PAREN         shift and go to state 252
     ASSIGN          reduce using rule 293 (LeftHandSide -> Name .)
+    PLUSEQ          reduce using rule 293 (LeftHandSide -> Name .)
+    MINUSEQ         reduce using rule 293 (LeftHandSide -> Name .)
     MULTEQ          reduce using rule 293 (LeftHandSide -> Name .)
     DIVEQ           reduce using rule 293 (LeftHandSide -> Name .)
     MODEQ           reduce using rule 293 (LeftHandSide -> Name .)
-    PLUSEQ          reduce using rule 293 (LeftHandSide -> Name .)
-    MINUSEQ         reduce using rule 293 (LeftHandSide -> Name .)
     LSHIFTEQ        reduce using rule 293 (LeftHandSide -> Name .)
     RSHIFTEQ        reduce using rule 293 (LeftHandSide -> Name .)
     DECR            reduce using rule 239 (PostfixExpression -> Name .)
@@ -9352,112 +9352,112 @@ state 254
 
 state 255
 
-    (297) AssignmentOperator -> MULTEQ .
+    (297) AssignmentOperator -> PLUSEQ .
 
-    SUPER           reduce using rule 297 (AssignmentOperator -> MULTEQ .)
-    IDENTIFIER      reduce using rule 297 (AssignmentOperator -> MULTEQ .)
-    THIS            reduce using rule 297 (AssignmentOperator -> MULTEQ .)
-    L_PAREN         reduce using rule 297 (AssignmentOperator -> MULTEQ .)
-    NEW             reduce using rule 297 (AssignmentOperator -> MULTEQ .)
-    INT_CONSTANT    reduce using rule 297 (AssignmentOperator -> MULTEQ .)
-    FLOAT_CONSTANT  reduce using rule 297 (AssignmentOperator -> MULTEQ .)
-    CHAR_CONSTANT   reduce using rule 297 (AssignmentOperator -> MULTEQ .)
-    STR_CONSTANT    reduce using rule 297 (AssignmentOperator -> MULTEQ .)
-    NULL            reduce using rule 297 (AssignmentOperator -> MULTEQ .)
-    PLUS            reduce using rule 297 (AssignmentOperator -> MULTEQ .)
-    MINUS           reduce using rule 297 (AssignmentOperator -> MULTEQ .)
-    INCR            reduce using rule 297 (AssignmentOperator -> MULTEQ .)
-    DECR            reduce using rule 297 (AssignmentOperator -> MULTEQ .)
-    LOGIC_NOT       reduce using rule 297 (AssignmentOperator -> MULTEQ .)
-    BIT_NOT         reduce using rule 297 (AssignmentOperator -> MULTEQ .)
+    SUPER           reduce using rule 297 (AssignmentOperator -> PLUSEQ .)
+    IDENTIFIER      reduce using rule 297 (AssignmentOperator -> PLUSEQ .)
+    THIS            reduce using rule 297 (AssignmentOperator -> PLUSEQ .)
+    L_PAREN         reduce using rule 297 (AssignmentOperator -> PLUSEQ .)
+    NEW             reduce using rule 297 (AssignmentOperator -> PLUSEQ .)
+    INT_CONSTANT    reduce using rule 297 (AssignmentOperator -> PLUSEQ .)
+    FLOAT_CONSTANT  reduce using rule 297 (AssignmentOperator -> PLUSEQ .)
+    CHAR_CONSTANT   reduce using rule 297 (AssignmentOperator -> PLUSEQ .)
+    STR_CONSTANT    reduce using rule 297 (AssignmentOperator -> PLUSEQ .)
+    NULL            reduce using rule 297 (AssignmentOperator -> PLUSEQ .)
+    PLUS            reduce using rule 297 (AssignmentOperator -> PLUSEQ .)
+    MINUS           reduce using rule 297 (AssignmentOperator -> PLUSEQ .)
+    INCR            reduce using rule 297 (AssignmentOperator -> PLUSEQ .)
+    DECR            reduce using rule 297 (AssignmentOperator -> PLUSEQ .)
+    LOGIC_NOT       reduce using rule 297 (AssignmentOperator -> PLUSEQ .)
+    BIT_NOT         reduce using rule 297 (AssignmentOperator -> PLUSEQ .)
 
 
 state 256
 
-    (298) AssignmentOperator -> DIVEQ .
+    (298) AssignmentOperator -> MINUSEQ .
 
-    SUPER           reduce using rule 298 (AssignmentOperator -> DIVEQ .)
-    IDENTIFIER      reduce using rule 298 (AssignmentOperator -> DIVEQ .)
-    THIS            reduce using rule 298 (AssignmentOperator -> DIVEQ .)
-    L_PAREN         reduce using rule 298 (AssignmentOperator -> DIVEQ .)
-    NEW             reduce using rule 298 (AssignmentOperator -> DIVEQ .)
-    INT_CONSTANT    reduce using rule 298 (AssignmentOperator -> DIVEQ .)
-    FLOAT_CONSTANT  reduce using rule 298 (AssignmentOperator -> DIVEQ .)
-    CHAR_CONSTANT   reduce using rule 298 (AssignmentOperator -> DIVEQ .)
-    STR_CONSTANT    reduce using rule 298 (AssignmentOperator -> DIVEQ .)
-    NULL            reduce using rule 298 (AssignmentOperator -> DIVEQ .)
-    PLUS            reduce using rule 298 (AssignmentOperator -> DIVEQ .)
-    MINUS           reduce using rule 298 (AssignmentOperator -> DIVEQ .)
-    INCR            reduce using rule 298 (AssignmentOperator -> DIVEQ .)
-    DECR            reduce using rule 298 (AssignmentOperator -> DIVEQ .)
-    LOGIC_NOT       reduce using rule 298 (AssignmentOperator -> DIVEQ .)
-    BIT_NOT         reduce using rule 298 (AssignmentOperator -> DIVEQ .)
+    SUPER           reduce using rule 298 (AssignmentOperator -> MINUSEQ .)
+    IDENTIFIER      reduce using rule 298 (AssignmentOperator -> MINUSEQ .)
+    THIS            reduce using rule 298 (AssignmentOperator -> MINUSEQ .)
+    L_PAREN         reduce using rule 298 (AssignmentOperator -> MINUSEQ .)
+    NEW             reduce using rule 298 (AssignmentOperator -> MINUSEQ .)
+    INT_CONSTANT    reduce using rule 298 (AssignmentOperator -> MINUSEQ .)
+    FLOAT_CONSTANT  reduce using rule 298 (AssignmentOperator -> MINUSEQ .)
+    CHAR_CONSTANT   reduce using rule 298 (AssignmentOperator -> MINUSEQ .)
+    STR_CONSTANT    reduce using rule 298 (AssignmentOperator -> MINUSEQ .)
+    NULL            reduce using rule 298 (AssignmentOperator -> MINUSEQ .)
+    PLUS            reduce using rule 298 (AssignmentOperator -> MINUSEQ .)
+    MINUS           reduce using rule 298 (AssignmentOperator -> MINUSEQ .)
+    INCR            reduce using rule 298 (AssignmentOperator -> MINUSEQ .)
+    DECR            reduce using rule 298 (AssignmentOperator -> MINUSEQ .)
+    LOGIC_NOT       reduce using rule 298 (AssignmentOperator -> MINUSEQ .)
+    BIT_NOT         reduce using rule 298 (AssignmentOperator -> MINUSEQ .)
 
 
 state 257
 
-    (299) AssignmentOperator -> MODEQ .
+    (299) AssignmentOperator -> MULTEQ .
 
-    SUPER           reduce using rule 299 (AssignmentOperator -> MODEQ .)
-    IDENTIFIER      reduce using rule 299 (AssignmentOperator -> MODEQ .)
-    THIS            reduce using rule 299 (AssignmentOperator -> MODEQ .)
-    L_PAREN         reduce using rule 299 (AssignmentOperator -> MODEQ .)
-    NEW             reduce using rule 299 (AssignmentOperator -> MODEQ .)
-    INT_CONSTANT    reduce using rule 299 (AssignmentOperator -> MODEQ .)
-    FLOAT_CONSTANT  reduce using rule 299 (AssignmentOperator -> MODEQ .)
-    CHAR_CONSTANT   reduce using rule 299 (AssignmentOperator -> MODEQ .)
-    STR_CONSTANT    reduce using rule 299 (AssignmentOperator -> MODEQ .)
-    NULL            reduce using rule 299 (AssignmentOperator -> MODEQ .)
-    PLUS            reduce using rule 299 (AssignmentOperator -> MODEQ .)
-    MINUS           reduce using rule 299 (AssignmentOperator -> MODEQ .)
-    INCR            reduce using rule 299 (AssignmentOperator -> MODEQ .)
-    DECR            reduce using rule 299 (AssignmentOperator -> MODEQ .)
-    LOGIC_NOT       reduce using rule 299 (AssignmentOperator -> MODEQ .)
-    BIT_NOT         reduce using rule 299 (AssignmentOperator -> MODEQ .)
+    SUPER           reduce using rule 299 (AssignmentOperator -> MULTEQ .)
+    IDENTIFIER      reduce using rule 299 (AssignmentOperator -> MULTEQ .)
+    THIS            reduce using rule 299 (AssignmentOperator -> MULTEQ .)
+    L_PAREN         reduce using rule 299 (AssignmentOperator -> MULTEQ .)
+    NEW             reduce using rule 299 (AssignmentOperator -> MULTEQ .)
+    INT_CONSTANT    reduce using rule 299 (AssignmentOperator -> MULTEQ .)
+    FLOAT_CONSTANT  reduce using rule 299 (AssignmentOperator -> MULTEQ .)
+    CHAR_CONSTANT   reduce using rule 299 (AssignmentOperator -> MULTEQ .)
+    STR_CONSTANT    reduce using rule 299 (AssignmentOperator -> MULTEQ .)
+    NULL            reduce using rule 299 (AssignmentOperator -> MULTEQ .)
+    PLUS            reduce using rule 299 (AssignmentOperator -> MULTEQ .)
+    MINUS           reduce using rule 299 (AssignmentOperator -> MULTEQ .)
+    INCR            reduce using rule 299 (AssignmentOperator -> MULTEQ .)
+    DECR            reduce using rule 299 (AssignmentOperator -> MULTEQ .)
+    LOGIC_NOT       reduce using rule 299 (AssignmentOperator -> MULTEQ .)
+    BIT_NOT         reduce using rule 299 (AssignmentOperator -> MULTEQ .)
 
 
 state 258
 
-    (300) AssignmentOperator -> PLUSEQ .
+    (300) AssignmentOperator -> DIVEQ .
 
-    SUPER           reduce using rule 300 (AssignmentOperator -> PLUSEQ .)
-    IDENTIFIER      reduce using rule 300 (AssignmentOperator -> PLUSEQ .)
-    THIS            reduce using rule 300 (AssignmentOperator -> PLUSEQ .)
-    L_PAREN         reduce using rule 300 (AssignmentOperator -> PLUSEQ .)
-    NEW             reduce using rule 300 (AssignmentOperator -> PLUSEQ .)
-    INT_CONSTANT    reduce using rule 300 (AssignmentOperator -> PLUSEQ .)
-    FLOAT_CONSTANT  reduce using rule 300 (AssignmentOperator -> PLUSEQ .)
-    CHAR_CONSTANT   reduce using rule 300 (AssignmentOperator -> PLUSEQ .)
-    STR_CONSTANT    reduce using rule 300 (AssignmentOperator -> PLUSEQ .)
-    NULL            reduce using rule 300 (AssignmentOperator -> PLUSEQ .)
-    PLUS            reduce using rule 300 (AssignmentOperator -> PLUSEQ .)
-    MINUS           reduce using rule 300 (AssignmentOperator -> PLUSEQ .)
-    INCR            reduce using rule 300 (AssignmentOperator -> PLUSEQ .)
-    DECR            reduce using rule 300 (AssignmentOperator -> PLUSEQ .)
-    LOGIC_NOT       reduce using rule 300 (AssignmentOperator -> PLUSEQ .)
-    BIT_NOT         reduce using rule 300 (AssignmentOperator -> PLUSEQ .)
+    SUPER           reduce using rule 300 (AssignmentOperator -> DIVEQ .)
+    IDENTIFIER      reduce using rule 300 (AssignmentOperator -> DIVEQ .)
+    THIS            reduce using rule 300 (AssignmentOperator -> DIVEQ .)
+    L_PAREN         reduce using rule 300 (AssignmentOperator -> DIVEQ .)
+    NEW             reduce using rule 300 (AssignmentOperator -> DIVEQ .)
+    INT_CONSTANT    reduce using rule 300 (AssignmentOperator -> DIVEQ .)
+    FLOAT_CONSTANT  reduce using rule 300 (AssignmentOperator -> DIVEQ .)
+    CHAR_CONSTANT   reduce using rule 300 (AssignmentOperator -> DIVEQ .)
+    STR_CONSTANT    reduce using rule 300 (AssignmentOperator -> DIVEQ .)
+    NULL            reduce using rule 300 (AssignmentOperator -> DIVEQ .)
+    PLUS            reduce using rule 300 (AssignmentOperator -> DIVEQ .)
+    MINUS           reduce using rule 300 (AssignmentOperator -> DIVEQ .)
+    INCR            reduce using rule 300 (AssignmentOperator -> DIVEQ .)
+    DECR            reduce using rule 300 (AssignmentOperator -> DIVEQ .)
+    LOGIC_NOT       reduce using rule 300 (AssignmentOperator -> DIVEQ .)
+    BIT_NOT         reduce using rule 300 (AssignmentOperator -> DIVEQ .)
 
 
 state 259
 
-    (301) AssignmentOperator -> MINUSEQ .
+    (301) AssignmentOperator -> MODEQ .
 
-    SUPER           reduce using rule 301 (AssignmentOperator -> MINUSEQ .)
-    IDENTIFIER      reduce using rule 301 (AssignmentOperator -> MINUSEQ .)
-    THIS            reduce using rule 301 (AssignmentOperator -> MINUSEQ .)
-    L_PAREN         reduce using rule 301 (AssignmentOperator -> MINUSEQ .)
-    NEW             reduce using rule 301 (AssignmentOperator -> MINUSEQ .)
-    INT_CONSTANT    reduce using rule 301 (AssignmentOperator -> MINUSEQ .)
-    FLOAT_CONSTANT  reduce using rule 301 (AssignmentOperator -> MINUSEQ .)
-    CHAR_CONSTANT   reduce using rule 301 (AssignmentOperator -> MINUSEQ .)
-    STR_CONSTANT    reduce using rule 301 (AssignmentOperator -> MINUSEQ .)
-    NULL            reduce using rule 301 (AssignmentOperator -> MINUSEQ .)
-    PLUS            reduce using rule 301 (AssignmentOperator -> MINUSEQ .)
-    MINUS           reduce using rule 301 (AssignmentOperator -> MINUSEQ .)
-    INCR            reduce using rule 301 (AssignmentOperator -> MINUSEQ .)
-    DECR            reduce using rule 301 (AssignmentOperator -> MINUSEQ .)
-    LOGIC_NOT       reduce using rule 301 (AssignmentOperator -> MINUSEQ .)
-    BIT_NOT         reduce using rule 301 (AssignmentOperator -> MINUSEQ .)
+    SUPER           reduce using rule 301 (AssignmentOperator -> MODEQ .)
+    IDENTIFIER      reduce using rule 301 (AssignmentOperator -> MODEQ .)
+    THIS            reduce using rule 301 (AssignmentOperator -> MODEQ .)
+    L_PAREN         reduce using rule 301 (AssignmentOperator -> MODEQ .)
+    NEW             reduce using rule 301 (AssignmentOperator -> MODEQ .)
+    INT_CONSTANT    reduce using rule 301 (AssignmentOperator -> MODEQ .)
+    FLOAT_CONSTANT  reduce using rule 301 (AssignmentOperator -> MODEQ .)
+    CHAR_CONSTANT   reduce using rule 301 (AssignmentOperator -> MODEQ .)
+    STR_CONSTANT    reduce using rule 301 (AssignmentOperator -> MODEQ .)
+    NULL            reduce using rule 301 (AssignmentOperator -> MODEQ .)
+    PLUS            reduce using rule 301 (AssignmentOperator -> MODEQ .)
+    MINUS           reduce using rule 301 (AssignmentOperator -> MODEQ .)
+    INCR            reduce using rule 301 (AssignmentOperator -> MODEQ .)
+    DECR            reduce using rule 301 (AssignmentOperator -> MODEQ .)
+    LOGIC_NOT       reduce using rule 301 (AssignmentOperator -> MODEQ .)
+    BIT_NOT         reduce using rule 301 (AssignmentOperator -> MODEQ .)
 
 
 state 260
@@ -11147,11 +11147,11 @@ state 301
 
     DOT             shift and go to state 34
     ASSIGN          reduce using rule 293 (LeftHandSide -> Name .)
+    PLUSEQ          reduce using rule 293 (LeftHandSide -> Name .)
+    MINUSEQ         reduce using rule 293 (LeftHandSide -> Name .)
     MULTEQ          reduce using rule 293 (LeftHandSide -> Name .)
     DIVEQ           reduce using rule 293 (LeftHandSide -> Name .)
     MODEQ           reduce using rule 293 (LeftHandSide -> Name .)
-    PLUSEQ          reduce using rule 293 (LeftHandSide -> Name .)
-    MINUSEQ         reduce using rule 293 (LeftHandSide -> Name .)
     LSHIFTEQ        reduce using rule 293 (LeftHandSide -> Name .)
     RSHIFTEQ        reduce using rule 293 (LeftHandSide -> Name .)
     L_SQBR          shift and go to state 380
@@ -13902,11 +13902,11 @@ state 337
 
     L_PAREN         shift and go to state 252
     ASSIGN          reduce using rule 293 (LeftHandSide -> Name .)
+    PLUSEQ          reduce using rule 293 (LeftHandSide -> Name .)
+    MINUSEQ         reduce using rule 293 (LeftHandSide -> Name .)
     MULTEQ          reduce using rule 293 (LeftHandSide -> Name .)
     DIVEQ           reduce using rule 293 (LeftHandSide -> Name .)
     MODEQ           reduce using rule 293 (LeftHandSide -> Name .)
-    PLUSEQ          reduce using rule 293 (LeftHandSide -> Name .)
-    MINUSEQ         reduce using rule 293 (LeftHandSide -> Name .)
     LSHIFTEQ        reduce using rule 293 (LeftHandSide -> Name .)
     RSHIFTEQ        reduce using rule 293 (LeftHandSide -> Name .)
     DECR            reduce using rule 239 (PostfixExpression -> Name .)
@@ -14757,11 +14757,11 @@ state 360
 
     L_PAREN         shift and go to state 426
     ASSIGN          reduce using rule 228 (FieldAccess -> Primary DOT IDENTIFIER .)
+    PLUSEQ          reduce using rule 228 (FieldAccess -> Primary DOT IDENTIFIER .)
+    MINUSEQ         reduce using rule 228 (FieldAccess -> Primary DOT IDENTIFIER .)
     MULTEQ          reduce using rule 228 (FieldAccess -> Primary DOT IDENTIFIER .)
     DIVEQ           reduce using rule 228 (FieldAccess -> Primary DOT IDENTIFIER .)
     MODEQ           reduce using rule 228 (FieldAccess -> Primary DOT IDENTIFIER .)
-    PLUSEQ          reduce using rule 228 (FieldAccess -> Primary DOT IDENTIFIER .)
-    MINUSEQ         reduce using rule 228 (FieldAccess -> Primary DOT IDENTIFIER .)
     LSHIFTEQ        reduce using rule 228 (FieldAccess -> Primary DOT IDENTIFIER .)
     RSHIFTEQ        reduce using rule 228 (FieldAccess -> Primary DOT IDENTIFIER .)
     L_SQBR          reduce using rule 228 (FieldAccess -> Primary DOT IDENTIFIER .)
@@ -14778,11 +14778,11 @@ state 361
 
     L_PAREN         shift and go to state 427
     ASSIGN          reduce using rule 229 (FieldAccess -> SUPER DOT IDENTIFIER .)
+    PLUSEQ          reduce using rule 229 (FieldAccess -> SUPER DOT IDENTIFIER .)
+    MINUSEQ         reduce using rule 229 (FieldAccess -> SUPER DOT IDENTIFIER .)
     MULTEQ          reduce using rule 229 (FieldAccess -> SUPER DOT IDENTIFIER .)
     DIVEQ           reduce using rule 229 (FieldAccess -> SUPER DOT IDENTIFIER .)
     MODEQ           reduce using rule 229 (FieldAccess -> SUPER DOT IDENTIFIER .)
-    PLUSEQ          reduce using rule 229 (FieldAccess -> SUPER DOT IDENTIFIER .)
-    MINUSEQ         reduce using rule 229 (FieldAccess -> SUPER DOT IDENTIFIER .)
     LSHIFTEQ        reduce using rule 229 (FieldAccess -> SUPER DOT IDENTIFIER .)
     RSHIFTEQ        reduce using rule 229 (FieldAccess -> SUPER DOT IDENTIFIER .)
     L_SQBR          reduce using rule 229 (FieldAccess -> SUPER DOT IDENTIFIER .)
@@ -15535,11 +15535,11 @@ state 385
     (233) MethodInvocation -> Primary DOT IDENTIFIER . L_PAREN R_PAREN
 
     ASSIGN          reduce using rule 228 (FieldAccess -> Primary DOT IDENTIFIER .)
+    PLUSEQ          reduce using rule 228 (FieldAccess -> Primary DOT IDENTIFIER .)
+    MINUSEQ         reduce using rule 228 (FieldAccess -> Primary DOT IDENTIFIER .)
     MULTEQ          reduce using rule 228 (FieldAccess -> Primary DOT IDENTIFIER .)
     DIVEQ           reduce using rule 228 (FieldAccess -> Primary DOT IDENTIFIER .)
     MODEQ           reduce using rule 228 (FieldAccess -> Primary DOT IDENTIFIER .)
-    PLUSEQ          reduce using rule 228 (FieldAccess -> Primary DOT IDENTIFIER .)
-    MINUSEQ         reduce using rule 228 (FieldAccess -> Primary DOT IDENTIFIER .)
     LSHIFTEQ        reduce using rule 228 (FieldAccess -> Primary DOT IDENTIFIER .)
     RSHIFTEQ        reduce using rule 228 (FieldAccess -> Primary DOT IDENTIFIER .)
     L_SQBR          reduce using rule 228 (FieldAccess -> Primary DOT IDENTIFIER .)
@@ -15582,11 +15582,11 @@ state 386
     (235) MethodInvocation -> SUPER DOT IDENTIFIER . L_PAREN R_PAREN
 
     ASSIGN          reduce using rule 229 (FieldAccess -> SUPER DOT IDENTIFIER .)
+    PLUSEQ          reduce using rule 229 (FieldAccess -> SUPER DOT IDENTIFIER .)
+    MINUSEQ         reduce using rule 229 (FieldAccess -> SUPER DOT IDENTIFIER .)
     MULTEQ          reduce using rule 229 (FieldAccess -> SUPER DOT IDENTIFIER .)
     DIVEQ           reduce using rule 229 (FieldAccess -> SUPER DOT IDENTIFIER .)
     MODEQ           reduce using rule 229 (FieldAccess -> SUPER DOT IDENTIFIER .)
-    PLUSEQ          reduce using rule 229 (FieldAccess -> SUPER DOT IDENTIFIER .)
-    MINUSEQ         reduce using rule 229 (FieldAccess -> SUPER DOT IDENTIFIER .)
     LSHIFTEQ        reduce using rule 229 (FieldAccess -> SUPER DOT IDENTIFIER .)
     RSHIFTEQ        reduce using rule 229 (FieldAccess -> SUPER DOT IDENTIFIER .)
     L_SQBR          reduce using rule 229 (FieldAccess -> SUPER DOT IDENTIFIER .)
@@ -16950,11 +16950,11 @@ state 415
     (236) ArrayAccess -> Name L_SQBR Expression R_SQBR .
 
     ASSIGN          reduce using rule 236 (ArrayAccess -> Name L_SQBR Expression R_SQBR .)
+    PLUSEQ          reduce using rule 236 (ArrayAccess -> Name L_SQBR Expression R_SQBR .)
+    MINUSEQ         reduce using rule 236 (ArrayAccess -> Name L_SQBR Expression R_SQBR .)
     MULTEQ          reduce using rule 236 (ArrayAccess -> Name L_SQBR Expression R_SQBR .)
     DIVEQ           reduce using rule 236 (ArrayAccess -> Name L_SQBR Expression R_SQBR .)
     MODEQ           reduce using rule 236 (ArrayAccess -> Name L_SQBR Expression R_SQBR .)
-    PLUSEQ          reduce using rule 236 (ArrayAccess -> Name L_SQBR Expression R_SQBR .)
-    MINUSEQ         reduce using rule 236 (ArrayAccess -> Name L_SQBR Expression R_SQBR .)
     LSHIFTEQ        reduce using rule 236 (ArrayAccess -> Name L_SQBR Expression R_SQBR .)
     RSHIFTEQ        reduce using rule 236 (ArrayAccess -> Name L_SQBR Expression R_SQBR .)
     L_SQBR          reduce using rule 236 (ArrayAccess -> Name L_SQBR Expression R_SQBR .)
@@ -17913,11 +17913,11 @@ state 428
     (237) ArrayAccess -> PrimaryNoNewArray L_SQBR Expression R_SQBR .
 
     ASSIGN          reduce using rule 237 (ArrayAccess -> PrimaryNoNewArray L_SQBR Expression R_SQBR .)
+    PLUSEQ          reduce using rule 237 (ArrayAccess -> PrimaryNoNewArray L_SQBR Expression R_SQBR .)
+    MINUSEQ         reduce using rule 237 (ArrayAccess -> PrimaryNoNewArray L_SQBR Expression R_SQBR .)
     MULTEQ          reduce using rule 237 (ArrayAccess -> PrimaryNoNewArray L_SQBR Expression R_SQBR .)
     DIVEQ           reduce using rule 237 (ArrayAccess -> PrimaryNoNewArray L_SQBR Expression R_SQBR .)
     MODEQ           reduce using rule 237 (ArrayAccess -> PrimaryNoNewArray L_SQBR Expression R_SQBR .)
-    PLUSEQ          reduce using rule 237 (ArrayAccess -> PrimaryNoNewArray L_SQBR Expression R_SQBR .)
-    MINUSEQ         reduce using rule 237 (ArrayAccess -> PrimaryNoNewArray L_SQBR Expression R_SQBR .)
     LSHIFTEQ        reduce using rule 237 (ArrayAccess -> PrimaryNoNewArray L_SQBR Expression R_SQBR .)
     RSHIFTEQ        reduce using rule 237 (ArrayAccess -> PrimaryNoNewArray L_SQBR Expression R_SQBR .)
     L_SQBR          reduce using rule 237 (ArrayAccess -> PrimaryNoNewArray L_SQBR Expression R_SQBR .)
@@ -18344,11 +18344,11 @@ state 443
     L_SQBR          reduce using rule 27 (SimpleName -> IDENTIFIER .)
     DOT             reduce using rule 27 (SimpleName -> IDENTIFIER .)
     ASSIGN          reduce using rule 27 (SimpleName -> IDENTIFIER .)
+    PLUSEQ          reduce using rule 27 (SimpleName -> IDENTIFIER .)
+    MINUSEQ         reduce using rule 27 (SimpleName -> IDENTIFIER .)
     MULTEQ          reduce using rule 27 (SimpleName -> IDENTIFIER .)
     DIVEQ           reduce using rule 27 (SimpleName -> IDENTIFIER .)
     MODEQ           reduce using rule 27 (SimpleName -> IDENTIFIER .)
-    PLUSEQ          reduce using rule 27 (SimpleName -> IDENTIFIER .)
-    MINUSEQ         reduce using rule 27 (SimpleName -> IDENTIFIER .)
     LSHIFTEQ        reduce using rule 27 (SimpleName -> IDENTIFIER .)
     RSHIFTEQ        reduce using rule 27 (SimpleName -> IDENTIFIER .)
     DECR            reduce using rule 27 (SimpleName -> IDENTIFIER .)

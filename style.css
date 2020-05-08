@@ -1,0 +1,24 @@
+body{
+  padding-left: 2% ;
+  line-height: 160%;
+  font-size: 18px;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  color: #ff00ff;
+}
+h1{
+  text-align: center;
+  color: #000000;
+}
+.tochange{
+  color: #ff0000;
+  font-weight: bold;
+}
+.arrow{
+  color: #000000;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.final{
+  color: #000000;
+}
